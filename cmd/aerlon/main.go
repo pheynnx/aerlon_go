@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/http/station"
 	"github.com/go-chi/chi/v5"
@@ -27,8 +28,17 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// initalize database
-	db := "Some DB"
+	// initalize databases
+	// redPool, err := database.NewRedisPool(&redis.Options{
+	// 	Addr: "localhsot:6379",
+	// })
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	postPool, err := database.NewPostgressPool("fill in")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	r := chi.NewRouter()
 
@@ -37,7 +47,7 @@ func main() {
 
 	// mount routers
 	r.Mount("/", station.StationRoutes())
-	r.Mount("/blog", blog.BlogRoutes(db))
+	r.Mount("/blog", blog.BlogRoutes(postPool))
 
 	// start server
 	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))

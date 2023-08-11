@@ -1,6 +1,7 @@
 package blog
 
 import (
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
 	"github.com/go-chi/chi/v5"
 )
@@ -10,19 +11,19 @@ import (
 // extends chi router and orbit
 type BlogRouter struct {
 	// temp state
-	DB string
+	DBs *database.PostgresPool
 	*chi.Mux
 	*orbit.Orbit
 }
 
-func newBlogRouter(DB string) *BlogRouter {
+func newBlogRouter(DBs *database.PostgresPool) *BlogRouter {
 	return &BlogRouter{
-		DB: DB, Mux: chi.NewRouter(),
+		DBs: DBs, Mux: chi.NewRouter(),
 	}
 }
 
-func BlogRoutes(DB string) *BlogRouter {
-	blogRouter := newBlogRouter(DB)
+func BlogRoutes(DBs *database.PostgresPool) *BlogRouter {
+	blogRouter := newBlogRouter(DBs)
 
 	bh := BlogHandler{BlogRouter: blogRouter}
 
