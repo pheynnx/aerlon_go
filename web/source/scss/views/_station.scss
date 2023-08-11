@@ -1,0 +1,53 @@
+.station-container {
+  height: 100vh;
+  background: linear-gradient(to bottom, #000000 50%, #14102e 100%);
+  text-align: center;
+  display: grid;
+}
+
+.station-logo-box {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  width: 100%;
+  justify-self: center;
+}
+
+.station-navigation {
+  display: grid;
+  height: 43px;
+}
+
+.station-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+}
+
+.station-links {
+  letter-spacing: 0.03em;
+}
+
+.station-link {
+  align-self: center;
+  padding: 0px 10px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--station-link);
+  text-decoration: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--nav-lh);
+    }
+  }
+
+  &.active {
+    color: var(--nav-lh);
+  }
+}

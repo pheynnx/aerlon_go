@@ -1,0 +1,26 @@
+html {
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  background: #1a1a1a;
+  color: #fff;
+  min-height: 100vh;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+@import "./views/_station";

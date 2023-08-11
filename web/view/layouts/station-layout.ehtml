@@ -1,0 +1,6 @@
+{% extends "frame/main-frame.ehtml" %}
+
+{% block main %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}

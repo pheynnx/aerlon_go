@@ -1,0 +1,12 @@
+{% extends "frame/main-frame.ehtml" %}
+
+{% block main %}
+<h1>App Layout</h1>
+{% comment %} {% include "./includes/navbar.html.j2" %} {% endcomment %}
+
+{% block content %}
+{% endblock %}
+
+{% comment %} <script src="/public/js/compiled/navigation-compiled.js"></script> {% endcomment %}
+
+{% endblock %}
