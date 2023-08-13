@@ -2,25 +2,22 @@ package database
 
 import (
 	"context"
+	"os"
 
 	"github.com/jackc/pgx/v5"
 )
 
 type PostgresPool struct {
-	pgdb    *pgx.Conn
-	pgdbCtx context.Context
+	*pgx.Conn
 }
 
-func NewPostgressPool(connString string) (*PostgresPool, error) {
-	pgxdbCtx := context.Background()
+func NewPostgressPool() (*PostgresPool, error) {
+	ctx := context.Background()
 
-	pgdb, err := pgx.Connect(pgxdbCtx, connString)
+	pgdb, err := pgx.Connect(ctx, os.Getenv("PGX_URL"))
 	if err != nil {
 		return nil, err
 	}
 
-	return &PostgresPool{
-		pgdb, pgxdbCtx,
-	}, nil
-
+	return &PostgresPool{pgdb}, nil
 }

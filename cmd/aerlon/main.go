@@ -7,11 +7,12 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/go-chi/chi/v5"
+	"github.com/joho/godotenv"
+
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/http/station"
-	"github.com/go-chi/chi/v5"
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -35,10 +36,12 @@ func main() {
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
-	postPool, err := database.NewPostgressPool("fill in")
+	postPool, err := database.NewPostgressPool()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// rows, err := postPool.Query(context.Background(), "SELECT * FROM post")
 
 	r := chi.NewRouter()
 
