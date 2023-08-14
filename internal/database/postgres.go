@@ -1,23 +1,22 @@
 package database
 
 import (
-	"context"
 	"os"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
-type PostgresPool struct {
-	*pgx.Conn
+type SQLXPool struct {
+	*sqlx.DB
 }
 
-func NewPostgressPool() (*PostgresPool, error) {
-	ctx := context.Background()
+func NewSQLXPool() (*SQLXPool, error) {
 
-	pgdb, err := pgx.Connect(ctx, os.Getenv("PGX_URL"))
+	db, err := sqlx.Connect("postgres", os.Getenv("SQL_URL"))
 	if err != nil {
 		return nil, err
 	}
 
-	return &PostgresPool{pgdb}, nil
+	return &SQLXPool{db}, nil
 }

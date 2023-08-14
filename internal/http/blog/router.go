@@ -11,7 +11,7 @@ import (
 // extends chi router and orbit
 type BlogRouter struct {
 	// temp state
-	DBs *database.PostgresPool
+	// DBs *database.PostgresPool
 	*chi.Mux
 	*orbit.Orbit
 }
