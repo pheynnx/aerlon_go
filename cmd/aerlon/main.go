@@ -6,32 +6,14 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-	"time"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/google/uuid"
 	"github.com/joho/godotenv"
-	"github.com/lib/pq"
 
-	"github.com/ArminasAer/aerlon/internal/database"
+	"github.com/ArminasAer/aerlon/internal/blogcache"
+	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/http/station"
 )
-
-type Post struct {
-	Id            uuid.UUID
-	Date          time.Time
-	Slug          string
-	Title         string
-	Series        string
-	Categories    pq.StringArray
-	Markdown      string
-	CreatedAt     string `db:"created_at"`
-	UpdatedAt     string `db:"updated_at"`
-	Published     bool
-	Featured      bool
-	PostSnippet   string `db:"post_snippet"`
-	SeriesSnippet string `db:"series_snippet"`
-}
 
 func main() {
 	// load .env variables
@@ -47,36 +29,38 @@ func main() {
 		log.Fatal(err)
 	}
 
-	SQLXPool, err := database.NewSQLXPool()
-	if err != nil {
-		log.Fatal(err)
-	}
+	// SQLXPool, err := database.NewSQLXPool()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	var posts []Post
-	rows, err := SQLXPool.Queryx("SELECT * FROM post")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	for rows.Next() {
-		var p Post
-		err = rows.StructScan(&p)
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-		posts = append(posts, p)
-	}
-	for _, v := range posts {
-		fmt.Println(v.Categories)
-	}
+	// var posts []model.Post
+	// rows, err := SQLXPool.Queryx("SELECT * FROM post")
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// }
+	// for rows.Next() {
+	// 	var p model.Post
+	// 	err = rows.StructScan(&p)
+	// 	if err != nil {
+	// 		fmt.Println(err.Error())
+	// 	}
+	// 	posts = append(posts, p)
+	// }
+	// for _, v := range posts {
+	// 	fmt.Println(v.Categories)
+	// }
 
-	// var posts []Post
+	// var posts []model.Post
 	// err = SQLXPool.Select(&posts, "SELECT * FROM post")
 	// if err != nil {
 	// 	fmt.Println(err)
 	// }
-	// fmt.Println(posts)
+	// for _, v := range posts {
+	// 	fmt.Println(v.Categories)
+	// }
 
-	// rows, err := postPool.Query(context.Background(), "SELECT * FROM post")
+	bc := blogcache.InitCache()
 
 	r := chi.NewRouter()
 
@@ -85,7 +69,7 @@ func main() {
 
 	// mount routers
 	r.Mount("/", station.StationRoutes())
-	// r.Mount("/blog", blog.BlogRoutes())
+	r.Mount("/blog/{id}", blog.BlogRoutes(bc))
 
 	// start server
 	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))
