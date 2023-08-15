@@ -7,16 +7,15 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type SQLXPool struct {
+type DBPool struct {
 	*sqlx.DB
 }
 
-func NewSQLXPool() (*SQLXPool, error) {
-
+func NewDBPool() (*DBPool, error) {
 	db, err := sqlx.Connect("postgres", os.Getenv("SQL_URL"))
 	if err != nil {
 		return nil, err
 	}
 
-	return &SQLXPool{db}, nil
+	return &DBPool{db}, nil
 }

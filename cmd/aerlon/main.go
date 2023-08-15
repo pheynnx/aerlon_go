@@ -11,6 +11,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/http/station"
 )
@@ -29,39 +30,16 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// SQLXPool, err := database.NewSQLXPool()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	// initalize sqlx pool
+	db, err := database.NewDBPool()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	// var posts []model.Post
-	// rows, err := SQLXPool.Queryx("SELECT * FROM post")
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// }
-	// for rows.Next() {
-	// 	var p model.Post
-	// 	err = rows.StructScan(&p)
-	// 	if err != nil {
-	// 		fmt.Println(err.Error())
-	// 	}
-	// 	posts = append(posts, p)
-	// }
-	// for _, v := range posts {
-	// 	fmt.Println(v.Categories)
-	// }
+	// initalize blog html cache
+	bc := blogcache.InitCache(db)
 
-	// var posts []model.Post
-	// err = SQLXPool.Select(&posts, "SELECT * FROM post")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// for _, v := range posts {
-	// 	fmt.Println(v.Categories)
-	// }
-
-	bc := blogcache.InitCache()
-
+	// create top level router
 	r := chi.NewRouter()
 
 	// server static files

@@ -31,3 +31,7 @@ func (o *Orbit) Render(w http.ResponseWriter, name string, code int, data pongo2
 	w.WriteHeader(code)
 	template.ExecuteWriter(data, w)
 }
+
+func (o *Orbit) Error(w http.ResponseWriter, code int, errorMessage string) {
+	http.Error(w, errorMessage, code)
+}

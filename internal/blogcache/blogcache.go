@@ -3,6 +3,7 @@ package blogcache
 import (
 	"sync"
 
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/model"
 )
 
@@ -12,17 +13,15 @@ type BlogCache struct {
 	Posts map[string]model.Post
 }
 
-func InitCache() *BlogCache {
+func InitCache(DB *database.DBPool) *BlogCache {
+
+	model.GetPostsFromDB(DB)
+
 	return &BlogCache{
 		Index: []string{"one", "two", "three"},
 		Posts: map[string]model.Post{},
 	}
 }
-
-// VIEWCACHE will be passed to the blog router
-// Everything else can render in real time
-// There needs to be a cache for the index
-// And a caching of the posts themselves
 
 // SetInitCache on startup
 // Needs to grab posts from postgres
@@ -32,8 +31,6 @@ func InitCache() *BlogCache {
 // Create a sorted (post)
 // Cache needs to stay sorted by date
 
-// Insert spot into Cache
-// Updated Index and Posts
 func (bc *BlogCache) UpdateCache() {
 	bc.mx.Lock()
 	defer bc.mx.Unlock()
