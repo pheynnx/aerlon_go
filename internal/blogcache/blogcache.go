@@ -27,14 +27,17 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 	// sort posts
 	model.SortPostsByDate(posts)
 
-	// STILL NEED TO PARSE MARKDOWN TO HTML
-
 	var meta []*dto.Meta
 
 	postsRendered := map[string]string{}
-	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post") + ".ehtml"))
+	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post.ehtml")))
 
 	for _, p := range posts {
+
+		err := p.ConvertMarkdownToHtml()
+		if err != nil {
+			return nil, err
+		}
 
 		meta = append(meta, dto.MetaFromPost(p))
 
@@ -46,7 +49,7 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 
 	}
 
-	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog") + ".ehtml"))
+	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index.ehtml")))
 	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"metaList": meta})
 	if err != nil {
 		return nil, err

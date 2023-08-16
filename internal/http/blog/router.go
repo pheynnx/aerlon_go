@@ -1,6 +1,8 @@
 package blog
 
 import (
+	"net/http"
+
 	"github.com/ArminasAer/aerlon/internal/blogcache"
 	"github.com/ArminasAer/aerlon/internal/orbit"
 	"github.com/go-chi/chi/v5"
@@ -26,8 +28,32 @@ func BlogRoutes(blogCache *blogcache.BlogCache) *BlogRouter {
 
 	bh := BlogHandler{BlogRouter: blogRouter}
 
+	// blogRouter.Use(func(next http.Handler) http.Handler {
+	// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	// 		next.ServeHTTP(w, r)
+	// 	})
+	// })
+
 	blogRouter.Get("/", bh.getBlogIndex())
-	blogRouter.Get("/{slug}", bh.getBlogBySlug())
+
+	blogRouter.Route("/blog", func(r chi.Router) {
+		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+			http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		})
+		r.Get("/{slug}", bh.getBlogBySlug())
+	})
+
+	// middleware testing
+	blogRouter.Route("/weha", func(r chi.Router) {
+		r.Use(func(next http.Handler) http.Handler {
+			return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				next.ServeHTTP(w, r)
+			})
+		})
+		r.Get("/hi", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("HEYA"))
+		})
+	})
 
 	return blogRouter
 }

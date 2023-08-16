@@ -10,6 +10,6 @@
 <p>{{ postStruct.Title }}</p>
 <p>{{ postStruct.Slug }}</p>
 <p>{{ postStruct.Categories }}</p>
-<p>{{ postStruct.Markdown }}</p>
+<p>{{ postStruct.Markdown | safe }}</p>
 
 {% endblock %}
