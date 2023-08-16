@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"os/exec"
 
 	"github.com/go-chi/chi/v5"
@@ -14,6 +12,7 @@ import (
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/http/station"
+	"github.com/ArminasAer/aerlon/internal/orbit"
 )
 
 func main() {
@@ -53,6 +52,5 @@ func main() {
 	r.Mount("/blog", blog.BlogRoutes(bc))
 
 	// start server
-	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))
-	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), r)
+	orbit.Launch(r)
 }

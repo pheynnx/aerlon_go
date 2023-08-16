@@ -3,6 +3,7 @@ package orbit
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"path"
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
@@ -11,6 +12,11 @@ import (
 
 // global state and http helper methods
 type Orbit struct{}
+
+func Launch(r http.Handler) {
+	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))
+	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), r)
+}
 
 func (o *Orbit) Text(w http.ResponseWriter, code int, text string) {
 	w.Header().Set("Content-Type", "text/plain")
