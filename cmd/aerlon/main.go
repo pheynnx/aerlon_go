@@ -37,7 +37,10 @@ func main() {
 	}
 
 	// initalize blog html cache
-	bc := blogcache.InitCache(db)
+	bc, err := blogcache.InitCache(db)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// create top level router
 	r := chi.NewRouter()
@@ -47,7 +50,7 @@ func main() {
 
 	// mount routers
 	r.Mount("/", station.StationRoutes())
-	r.Mount("/blog/{id}", blog.BlogRoutes(bc))
+	r.Mount("/blog", blog.BlogRoutes(bc))
 
 	// start server
 	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))

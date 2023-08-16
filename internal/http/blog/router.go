@@ -26,7 +26,8 @@ func BlogRoutes(blogCache *blogcache.BlogCache) *BlogRouter {
 
 	bh := BlogHandler{BlogRouter: blogRouter}
 
-	blogRouter.Get("/", bh.getBlog())
+	blogRouter.Get("/", bh.getBlogIndex())
+	blogRouter.Get("/{slug}", bh.getBlogBySlug())
 
 	return blogRouter
 }

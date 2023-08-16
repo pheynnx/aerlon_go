@@ -1,6 +1,7 @@
 package model
 
 import (
+	"sort"
 	"time"
 
 	"github.com/ArminasAer/aerlon/internal/database"
@@ -28,7 +29,19 @@ func (p *Post) ConvertMarkdownToHtml() {
 
 }
 
-func SortPostsByDate(posts []*Post) {}
+func SortPostsByDate(posts []*Post) {
+	sort.Slice(posts, func(i, j int) bool {
+		a := posts[i].Date.Unix()
+		b := posts[j].Date.Unix()
+
+		if a == b {
+			return posts[i].Title < posts[j].Title
+		} else if a > b {
+			return a > b
+		}
+		return b < a
+	})
+}
 
 func GetPostFromDB(DB *database.DBPool, id uuid.UUID) (*Post, error) {
 	var post *Post

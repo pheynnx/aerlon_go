@@ -4,7 +4,17 @@
 {% endblock %}
 
 {% block content %}
-<h1>TACO TIME</h1>
-<h1>TACO TIME</h1>
-<h3>{{set}}</h3>
+{% for meta in metaList %}
+<div>
+<p>{{ meta.Id }}</p>
+<p>{{ meta.Title }}</p>
+<p>{{ meta.Slug }}</p>
+<p>{{ meta.Date }}</p>
+<p>{{ meta.Series }}</p>
+{% for c in meta.Categories %}
+<span>{{ c }}-</span>
+{% endfor %}
+</div>
+<br/>
+{% endfor %}
 {% endblock %}

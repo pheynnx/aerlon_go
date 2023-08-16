@@ -10,15 +10,17 @@ type BlogHandler struct {
 	*BlogRouter
 }
 
-func (bh *BlogHandler) getBlog() http.HandlerFunc {
+func (bh *BlogHandler) getBlogIndex() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id := chi.URLParam(r, "id")
-		// bh.Orbit.Render(w, "blog", 200, map[string]any{"set": "hi"})
 
-		if id == "42" {
-			bh.blogCache.UpdateCache()
-		}
+		bh.Orbit.Html(w, 200, bh.blogCache.IndexMeta)
+	}
+}
 
-		bh.Orbit.Html(w, 200, bh.blogCache.Index[2])
+func (bh *BlogHandler) getBlogBySlug() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		slug := chi.URLParam(r, "slug")
+
+		bh.Orbit.CacheRender(w, bh.blogCache, 200, slug)
 	}
 }

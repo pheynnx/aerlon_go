@@ -1,0 +1,15 @@
+{% extends "layouts/app-layout.ehtml" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<p>{{ postStruct.Id }}</p>
+<p>{{ postStruct.Date }}</p>
+<p>{{ postStruct.Title }}</p>
+<p>{{ postStruct.Slug }}</p>
+<p>{{ postStruct.Categories }}</p>
+<p>{{ postStruct.Markdown }}</p>
+
+{% endblock %}

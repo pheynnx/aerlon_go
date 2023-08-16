@@ -25,8 +25,8 @@ func GetMetaFromDB() (Meta, error) {
 	return Meta{}, nil
 }
 
-func MetaFromPost(p model.Post) Meta {
-	return Meta{
+func MetaFromPost(p *model.Post) *Meta {
+	return &Meta{
 		Id:            p.Id,
 		Date:          p.Date,
 		Slug:          p.Slug,
