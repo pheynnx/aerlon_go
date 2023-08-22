@@ -1,6 +1,6 @@
 # Aerlon
 
-## [0.0.5] alpha [not in production]
+## [0.0.6] alpha [not in production]
 
 ### About
 

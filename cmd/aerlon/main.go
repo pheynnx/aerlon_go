@@ -11,8 +11,8 @@ import (
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
 	"github.com/ArminasAer/aerlon/internal/database"
-	"github.com/ArminasAer/aerlon/internal/http/blog"
 	"github.com/ArminasAer/aerlon/internal/orbit"
+	"github.com/ArminasAer/aerlon/internal/router/blog"
 )
 
 func main() {

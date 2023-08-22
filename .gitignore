@@ -1,5 +1,6 @@
 .env
 
 /bin/
+/tmp/
 
 /web/static/css/main.css
