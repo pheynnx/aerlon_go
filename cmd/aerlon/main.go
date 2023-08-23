@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net/http"
-	"os/exec"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -23,11 +22,11 @@ func main() {
 	}
 
 	// compile scss with 'sass'
-	cmd := exec.Command("sass", "--no-source-map", "--style=compressed", "web/source/scss:web/static/css")
-	_, err = cmd.CombinedOutput()
-	if err != nil {
-		log.Fatal(err)
-	}
+	// cmd := exec.Command("sass", "--no-source-map", "--style=compressed", "web/source/scss:web/static/css")
+	// _, err = cmd.CombinedOutput()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
 	// initalize sqlx pool
 	db, err := database.NewDBPool()

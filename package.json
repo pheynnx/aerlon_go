@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "run-p -l dev:css dev:esbuild dev:go",
+    "dev:css": "sass --no-source-map --style=compressed --watch web/source/scss:web/static/css",
+    "dev:esbuild": "node --watch-path=./web/source/js ./web/source/js/compiler.mjs",
+    "dev:go": "air",
+    "build": "run-s -l build:*",
+    "build:css": "sass --no-source-map --style=compressed web/source/scss:web/static/css",
+    "build:esbuild": "node ./web/source/js/compiler.mjs",
+    "build:go": "go build -o ./bin/aerlon ./cmd/aerlon/main.go"
+  },
+  "devDependencies": {
+    "axios": "^1.4.0",
+    "esbuild": "^0.19.2",
+    "esbuild-plugin-solid": "^0.5.0",
+    "solid-js": "^1.7.11",
+    "npm-run-all": "^4.1.5"
+  }
+}

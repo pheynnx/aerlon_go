@@ -1,6 +1,14 @@
+# go
 .env
 
+# air
 /bin/
 /tmp/
 
-/web/static/css/main.css
+# compiled
+web/static/css/main.css
+web/static/js/*-compiled.js
+
+
+# node
+node_modules

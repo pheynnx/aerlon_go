@@ -1,0 +1,7 @@
+<div style="display: flex; height: 40px;">
+    <nav style="">
+        <a href="/">Blog</a>
+        <a href="/benchmarks">Benchmarks</a>
+        <a href="/about">About</a>
+    </nav>
+</div>

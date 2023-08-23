@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/ArminasAer/aerlon/internal/database"
+
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/google/uuid"
 	"github.com/lib/pq"
@@ -56,6 +57,7 @@ func (p *Post) ConvertMarkdownToHtml() error {
 
 	return nil
 }
+
 func SortPostsByDate(posts []*Post) {
 	sort.Slice(posts, func(i, j int) bool {
 		a := posts[i].Date.Unix()

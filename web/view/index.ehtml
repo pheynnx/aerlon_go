@@ -55,16 +55,7 @@
 <h4>Personal blog and HTTP benchmarking</h4>
 <h4>Choose what vessel to journey on:</h4>
 {% for meta in metaList %}
-<div>
-<p>{{ meta.Id }}</p>
-<p>{{ meta.Title }}</p>
-<p>{{ meta.Slug }}</p>
-<p>{{ meta.Date }}</p>
-<p>{{ meta.Series }}</p>
-{% for c in meta.Categories %}
-<span>{{ c }}-</span>
-{% endfor %}
-</div>
-<br/>
+    {% set featured = true %}
+    {% include "components/card.ehtml" %}
 {% endfor %}
 {% endblock %}

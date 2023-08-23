@@ -4,9 +4,9 @@ tmp_dir = "tmp"
 
 [build]
 args_bin = []
-bin = "tmp\\main.exe"
-cmd = "go build -o ./tmp/main.exe ./cmd/aerlon/main.go"
-delay = 10
+bin = "tmp\\main"
+cmd = "go build -o ./tmp/main ./cmd/aerlon/main.go"
+delay = 0
 exclude_dir = ["tmp"]
 exclude_file = []
 exclude_regex = ["_test.go"]
@@ -14,7 +14,7 @@ exclude_unchanged = false
 follow_symlink = false
 full_bin = ""
 include_dir = []
-include_ext = ["go", "tpl", "tmpl", "html", "ehtml", "scss"]
+include_ext = ["go", "ehtml"]
 include_file = []
 kill_delay = "0s"
 log = "build-errors.log"
