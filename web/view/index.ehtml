@@ -49,13 +49,27 @@
         </g>
     </svg>
 </div>
-<h3>
+{% comment %} <h3>
     Space station where knowledge and wisdom are traded among all voyagers
 </h3>
 <h4>Personal blog and HTTP benchmarking</h4>
-<h4>Choose what vessel to journey on:</h4>
-{% for meta in metaList %}
-    {% set featured = true %}
-    {% include "components/card.ehtml" %}
-{% endfor %}
+<h4>Choose what vessel to journey on:</h4> {% endcomment %}
+<div class="main-posts-container">
+    <div class="featured-posts-container">
+        {% for meta in metaList %}
+            {% if meta.Featured %}
+                {% set featured = true %}
+                {% include "components/post_card.ehtml" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="non_featured-posts-container">
+        {% for meta in metaList %}
+            {% if !meta.Featured %}
+                {% set featured = false %}
+                {% include "components/post_card.ehtml" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

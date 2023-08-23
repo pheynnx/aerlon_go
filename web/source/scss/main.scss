@@ -1,5 +1,5 @@
-@import "./fonts.scss";
-@import "./syntax.scss";
+@import "./tooling/fonts.scss";
+@import "./tooling/syntax.scss";
 
 html {
   font-family: "Gx";
@@ -26,4 +26,4 @@ body {
   box-sizing: border-box;
 }
 
-@import "./views/_station";
+@import "./views/_index.scss";
