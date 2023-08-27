@@ -4,8 +4,8 @@ tmp_dir = "tmp"
 
 [build]
 args_bin = []
-bin = "tmp\\main"
-cmd = "go build -o ./tmp/main ./cmd/aerlon/main.go"
+bin = "tmp\\main.exe"
+cmd = "go build -o ./tmp/main.exe ./cmd/aerlon/main.go"
 delay = 0
 exclude_dir = ["tmp"]
 exclude_file = []

@@ -11,7 +11,9 @@ import (
 	"github.com/ArminasAer/aerlon/internal/blogcache"
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
+	"github.com/ArminasAer/aerlon/internal/router/benchmarks"
 	"github.com/ArminasAer/aerlon/internal/router/blog"
+	"github.com/ArminasAer/aerlon/internal/router/readme"
 )
 
 func main() {
@@ -20,13 +22,6 @@ func main() {
 	if err != nil {
 		log.Fatal("error loading .env file")
 	}
-
-	// compile scss with 'sass'
-	// cmd := exec.Command("sass", "--no-source-map", "--style=compressed", "web/source/scss:web/static/css")
-	// _, err = cmd.CombinedOutput()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
 
 	// initalize sqlx pool
 	db, err := database.NewDBPool()
@@ -53,6 +48,8 @@ func main() {
 
 	// mount routers
 	r.Mount("/", blog.BlogRoutes(bc))
+	r.Mount("/readme", readme.ReadMeRoutes())
+	r.Mount("/benchmarks", benchmarks.BenchmarksRoutes())
 
 	// start server
 	orbit.Launch(r)

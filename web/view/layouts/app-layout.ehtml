@@ -2,6 +2,7 @@
 
 {% block main %}
 
+    {% include "../includes/header.ehtml" %}
     {% include "../includes/navbar.ehtml" %}
 
     {% block content %}
