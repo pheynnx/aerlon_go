@@ -11,22 +11,22 @@ import (
 // blog router state
 //
 // extends chi router and orbit
-type BlogRouter struct {
+type Router struct {
 	blogCache *blogcache.BlogCache
 	*chi.Mux
 	*orbit.Orbit
 }
 
-func newBlogRouter(blogCache *blogcache.BlogCache) *BlogRouter {
-	return &BlogRouter{
+func newRouter(blogCache *blogcache.BlogCache) *Router {
+	return &Router{
 		blogCache: blogCache, Mux: chi.NewRouter(),
 	}
 }
 
-func BlogRoutes(blogCache *blogcache.BlogCache) *BlogRouter {
-	blogRouter := newBlogRouter(blogCache)
+func Routes(blogCache *blogcache.BlogCache) *Router {
+	router := newRouter(blogCache)
 
-	bh := BlogHandler{BlogRouter: blogRouter}
+	h := Handler{router}
 
 	// blogRouter.Use(func(next http.Handler) http.Handler {
 	// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -34,17 +34,17 @@ func BlogRoutes(blogCache *blogcache.BlogCache) *BlogRouter {
 	// 	})
 	// })
 
-	blogRouter.Get("/", bh.getBlogIndex())
+	router.Get("/", h.getBlogIndex())
 
-	blogRouter.Route("/blog", func(r chi.Router) {
+	router.Route("/blog", func(r chi.Router) {
 		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/", http.StatusMovedPermanently)
 		})
-		r.Get("/{slug}", bh.getBlogBySlug())
+		r.Get("/{slug}", h.getBlogBySlug())
 	})
 
 	// middleware testing
-	blogRouter.Route("/weha", func(r chi.Router) {
+	router.Route("/weha", func(r chi.Router) {
 		r.Use(func(next http.Handler) http.Handler {
 			return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				next.ServeHTTP(w, r)
@@ -55,5 +55,5 @@ func BlogRoutes(blogCache *blogcache.BlogCache) *BlogRouter {
 		})
 	})
 
-	return blogRouter
+	return router
 }

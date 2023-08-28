@@ -2,6 +2,7 @@ package orbit
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"path"
@@ -15,7 +16,10 @@ type Orbit struct{}
 
 func Launch(r http.Handler) {
 	fmt.Printf("🚀 Aerlon launching: %s:%s 🚀\n", os.Getenv("HOST"), os.Getenv("PORT"))
-	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), r)
+	err := http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), r)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func (o *Orbit) Text(w http.ResponseWriter, code int, text string) {
@@ -24,7 +28,7 @@ func (o *Orbit) Text(w http.ResponseWriter, code int, text string) {
 	w.Write([]byte(text))
 }
 
-func (o *Orbit) Html(w http.ResponseWriter, code int, html string) {
+func (o *Orbit) HTML(w http.ResponseWriter, code int, html string) {
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(code)
 	w.Write([]byte(html))

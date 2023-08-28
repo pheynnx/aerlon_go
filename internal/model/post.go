@@ -17,7 +17,7 @@ import (
 )
 
 type Post struct {
-	Id            uuid.UUID      `json:"id"`
+	ID            uuid.UUID      `json:"id"`
 	Date          time.Time      `json:"date"`
 	Slug          string         `json:"slug"`
 	Title         string         `json:"title"`
@@ -46,7 +46,7 @@ var md = goldmark.New(
 	),
 )
 
-func (p *Post) ConvertMarkdownToHtml() error {
+func (p *Post) ConvertMarkdownToHTML() error {
 	var buf bytes.Buffer
 	err := md.Convert([]byte(p.Markdown), &buf)
 	if err != nil {
@@ -74,7 +74,10 @@ func SortPostsByDate(posts []*Post) {
 
 func GetPostFromDB(DB *database.DBPool, id uuid.UUID) (*Post, error) {
 	var post *Post
-	DB.Get(&post, "SELECT * FROM post WHERE id = $1", id)
+	err := DB.Get(&post, "SELECT * FROM post WHERE id = $1", id)
+	if err != nil {
+		return nil, err
+	}
 
 	return post, nil
 }

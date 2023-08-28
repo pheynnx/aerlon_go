@@ -24,13 +24,13 @@ func main() {
 		log.Fatal("error loading .env file")
 	}
 
-	// initalize sqlx pool
+	// initialize sqlx pool
 	db, err := database.NewDBPool()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// initalize blog html cache
+	// initialize blog html cache
 	bc, err := blogcache.InitCache(db)
 	if err != nil {
 		log.Fatal(err)
@@ -48,12 +48,12 @@ func main() {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	// app routers
-	r.Mount("/", blog.BlogRoutes(bc))
-	r.Mount("/readme", readme.ReadMeRoutes())
-	r.Mount("/benchmarks", benchmarks.BenchmarksRoutes())
+	r.Mount("/", blog.Routes(bc))
+	r.Mount("/readme", readme.Routes())
+	r.Mount("/benchmarks", benchmarks.Routes())
 
 	// admin router
-	r.Mount("/admin", admin.AdminRoutes(db))
+	r.Mount("/admin", admin.Routes(db))
 
 	// start server
 	orbit.Launch(r)

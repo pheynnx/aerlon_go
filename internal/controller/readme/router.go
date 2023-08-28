@@ -5,23 +5,23 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type ReadmeRouter struct {
+type Router struct {
 	*chi.Mux
 	*orbit.Orbit
 }
 
-func newReadmeRouter() *ReadmeRouter {
-	return &ReadmeRouter{
+func newRouter() *Router {
+	return &Router{
 		Mux: chi.NewRouter(),
 	}
 }
 
-func ReadMeRoutes() *ReadmeRouter {
-	readmeRouter := newReadmeRouter()
+func Routes() *Router {
+	router := newRouter()
 
-	rh := ReadmeHandler{ReadmeRouter: readmeRouter}
+	h := Handler{router}
 
-	readmeRouter.Get("/", rh.getReadme())
+	router.Get("/", h.getReadme())
 
-	return readmeRouter
+	return router
 }

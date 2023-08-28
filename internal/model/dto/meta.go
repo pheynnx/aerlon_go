@@ -9,7 +9,7 @@ import (
 )
 
 type Meta struct {
-	Id            uuid.UUID      `json:"id"`
+	ID            uuid.UUID      `json:"id"`
 	Date          time.Time      `json:"date"`
 	Slug          string         `json:"slug"`
 	Title         string         `json:"title"`
@@ -27,7 +27,7 @@ func GetMetaFromDB() (Meta, error) {
 
 func MetaFromPost(p *model.Post) *Meta {
 	return &Meta{
-		Id:            p.Id,
+		ID:            p.ID,
 		Date:          p.Date,
 		Slug:          p.Slug,
 		Title:         p.Title,

@@ -2,13 +2,13 @@ package readme
 
 import "net/http"
 
-type ReadmeHandler struct {
-	*ReadmeRouter
+type Handler struct {
+	*Router
 }
 
-func (rh ReadmeHandler) getReadme() http.HandlerFunc {
+func (h Handler) getReadme() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		rh.Orbit.Render(w, "readme", 200, map[string]any{})
+		h.Orbit.Render(w, "readme", 200, map[string]any{})
 	}
 }

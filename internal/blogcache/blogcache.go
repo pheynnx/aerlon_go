@@ -27,14 +27,14 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 	// sort posts
 	model.SortPostsByDate(posts)
 
-	var meta []*dto.Meta
+	meta := []*dto.Meta{}
 
 	postsRendered := map[string]string{}
 	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post.ehtml")))
 
 	for _, p := range posts {
 
-		err := p.ConvertMarkdownToHtml()
+		err := p.ConvertMarkdownToHTML()
 		if err != nil {
 			return nil, err
 		}

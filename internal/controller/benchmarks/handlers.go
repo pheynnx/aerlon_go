@@ -2,13 +2,13 @@ package benchmarks
 
 import "net/http"
 
-type BenchmarksHandler struct {
-	*BenchmarksRouter
+type Handler struct {
+	*Router
 }
 
-func (bmh BenchmarksHandler) getBenchmarks() http.HandlerFunc {
+func (h Handler) getBenchmarks() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		bmh.Orbit.Render(w, "benchmarks", 200, map[string]any{})
+		h.Orbit.Render(w, "benchmarks", 200, map[string]any{})
 	}
 }

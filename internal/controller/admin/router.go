@@ -6,26 +6,26 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type AdminRouter struct {
+type Router struct {
 	*chi.Mux
 	*orbit.Orbit
 	DB *database.DBPool
 }
 
-func newAdminRouter(DB *database.DBPool) *AdminRouter {
-	return &AdminRouter{
+func newRouter(DB *database.DBPool) *Router {
+	return &Router{
 		Mux: chi.NewRouter(),
 		DB:  DB,
 	}
 }
 
-func AdminRoutes(DB *database.DBPool) *AdminRouter {
-	AdminRouter := newAdminRouter(DB)
+func Routes(DB *database.DBPool) *Router {
+	router := newRouter(DB)
 
-	ah := AdminHandler{AdminRouter: AdminRouter}
+	ah := Handler{router}
 
-	AdminRouter.Get("/login", ah.AdminLoginView())
-	AdminRouter.Get("/", ah.AdminDashboardView())
+	router.Get("/login", ah.AdminLoginView())
+	router.Get("/", ah.AdminDashboardView())
 
-	return AdminRouter
+	return router
 }

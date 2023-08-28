@@ -5,23 +5,23 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type BenchmarksRouter struct {
+type Router struct {
 	*chi.Mux
 	*orbit.Orbit
 }
 
-func newBenchmarksRouter() *BenchmarksRouter {
-	return &BenchmarksRouter{
+func newRouter() *Router {
+	return &Router{
 		Mux: chi.NewRouter(),
 	}
 }
 
-func BenchmarksRoutes() *BenchmarksRouter {
-	BenchmarksRouter := newBenchmarksRouter()
+func Routes() *Router {
+	router := newRouter()
 
-	bmh := BenchmarksHandler{BenchmarksRouter: BenchmarksRouter}
+	h := Handler{router}
 
-	BenchmarksRouter.Get("/", bmh.getBenchmarks())
+	router.Get("/", h.getBenchmarks())
 
-	return BenchmarksRouter
+	return router
 }
