@@ -11,6 +11,7 @@ import (
 	"github.com/ArminasAer/aerlon/internal/blogcache"
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
+	"github.com/ArminasAer/aerlon/internal/router/admin"
 	"github.com/ArminasAer/aerlon/internal/router/benchmarks"
 	"github.com/ArminasAer/aerlon/internal/router/blog"
 	"github.com/ArminasAer/aerlon/internal/router/readme"
@@ -46,10 +47,13 @@ func main() {
 	// server static files
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
-	// mount routers
+	// app routers
 	r.Mount("/", blog.BlogRoutes(bc))
 	r.Mount("/readme", readme.ReadMeRoutes())
 	r.Mount("/benchmarks", benchmarks.BenchmarksRoutes())
+
+	// admin router
+	r.Mount("/admin", admin.AdminRoutes(db))
 
 	// start server
 	orbit.Launch(r)
