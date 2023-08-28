@@ -9,12 +9,12 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
+	"github.com/ArminasAer/aerlon/internal/controller/admin"
+	"github.com/ArminasAer/aerlon/internal/controller/benchmarks"
+	"github.com/ArminasAer/aerlon/internal/controller/blog"
+	"github.com/ArminasAer/aerlon/internal/controller/readme"
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
-	"github.com/ArminasAer/aerlon/internal/router/admin"
-	"github.com/ArminasAer/aerlon/internal/router/benchmarks"
-	"github.com/ArminasAer/aerlon/internal/router/blog"
-	"github.com/ArminasAer/aerlon/internal/router/readme"
 )
 
 func main() {
