@@ -45,6 +45,12 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	// server static files
+	// r.Get("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+	// 	http.ServeFile(w, r, "web/root/favicon.ico")
+	// })
+	r.Get("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "web/root/robots.txt")
+	})
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	// app routers

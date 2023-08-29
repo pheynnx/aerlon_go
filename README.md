@@ -1,6 +1,6 @@
 # Aerlon
 
-## [0.0.14] alpha
+## [0.0.15] alpha
 
 ### About
 
@@ -30,7 +30,3 @@ Well Go is an interesting language; it's honestly kind of a boring language. Not
 - doesn't use type.(method) syntax; uses method(type) syntax
   - this is subjective, but not my favorite syntax
 - Uppercase syntax for public package exporting instead of a 'pub' keyword
-
-### Theming
-
-The website is space themed, because that is awesome and why not! You have to have some fun in life. No need to take things so seriously all the time. Blast off to Aerlon and enjoy your galactic adventure.
