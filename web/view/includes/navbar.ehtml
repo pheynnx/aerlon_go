@@ -1,5 +1,7 @@
-<nav>
-    <a href="/">Blog</a>
-    <a href="/benchmarks">Benchmarks</a>
-    <a href="/readme">Readme</a>
+<nav class="navigation">
+    <div class="navigation-links">
+        <a class="navigation-link" href="/">Blog</a>
+        <a class="navigation-link" href="/benchmarks">Benchmarks</a>
+        <a class="navigation-link" href="/readme">Readme</a>
+    </div>
 </nav>

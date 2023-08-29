@@ -6,11 +6,11 @@
     <div class="post_card-categories">
       {% for category in meta.Categories %}
       <a class="post_card-category" href="/category/{{ category }}">
-        <p class="post_card-category-info">{{ category }}</p>
+        <span class="post_card-category-info">{{ category }}</span>
       </a>
       {% endfor %}
     </div>
-    <div>
+    <div class="post_card-snippet-container">
       <p class="post_card-snippet">{{ meta.PostSnippet }}</p>
     </div>
 </div>

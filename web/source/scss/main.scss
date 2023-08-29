@@ -1,8 +1,9 @@
-@import "./tooling/fonts.scss";
-@import "./tooling/syntax.scss";
+@import "./tooling/_fonts.scss";
+@import "./tooling/_variables.scss";
+@import "./tooling/_syntax.scss";
 
 html {
-  font-family: "Gx";
+  font-family: "OpenSans";
   -webkit-tap-highlight-color: transparent;
   background: #141414;
   color: #fff;
@@ -26,4 +27,9 @@ body {
   box-sizing: border-box;
 }
 
+// includes
+@import "./includes/_header.scss";
+@import "./includes/_navbar.scss";
+
+// views
 @import "./views/_index.scss";

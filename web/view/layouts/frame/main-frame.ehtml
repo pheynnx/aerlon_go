@@ -8,16 +8,9 @@
     <title>Aerlon</title>
     <link
       rel="preload"
-      href="/static/fonts/Pondar.otf"
+      href="/static/fonts/OpenSans.ttf"
       as="font"
-      type="font/otf"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/static/fonts/Gx.woff2"
-      as="font"
-      type="font/woff2"
+      type="font/ttf"
       crossorigin
     />
     <link

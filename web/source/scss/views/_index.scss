@@ -1,1 +1,17 @@
 @import "../components/post_card.scss";
+
+.main-posts-container {
+  display: grid;
+  margin: 0 5%;
+  //   max-width: 56rem;
+}
+
+.featured-posts-container {
+  justify-self: center;
+  max-width: 56rem;
+}
+
+.non_featured-posts-container {
+  justify-self: center;
+  max-width: 56rem;
+}
