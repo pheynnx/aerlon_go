@@ -41,7 +41,7 @@ func main() {
 
 	// root level middleware stack
 	r.Use(middleware.RealIP)
-	r.Use(middleware.Logger)
+	// r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
 	// server static files

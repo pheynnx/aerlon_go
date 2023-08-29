@@ -16,5 +16,9 @@
   color: #fff;
   text-decoration: none;
   font-size: 20px;
-  padding: 0 10px;
+  margin: 0 10px;
+
+  &.active {
+    color: #4c98c4;
+  }
 }

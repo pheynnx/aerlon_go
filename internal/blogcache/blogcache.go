@@ -50,7 +50,7 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 	}
 
 	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index.ehtml")))
-	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"metaList": meta})
+	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"metaList": meta, "url": "/"})
 	if err != nil {
 		return nil, err
 	}

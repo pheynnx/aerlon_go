@@ -5,7 +5,7 @@
 html {
   font-family: "OpenSans";
   -webkit-tap-highlight-color: transparent;
-  background: #141414;
+  background: #17181a;
   color: #fff;
   min-height: 100vh;
 
@@ -25,6 +25,13 @@ body {
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+.topper {
+  display: grid;
+  // background-color: #181920;
+  // border-bottom: 1px solid #09090c;
+  // margin-bottom: 25px;
 }
 
 // includes

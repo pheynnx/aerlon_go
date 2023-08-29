@@ -2,8 +2,10 @@
 
 {% block main %}
 
-    {% include "../includes/header.ehtml" %}
-    {% include "../includes/navbar.ehtml" %}
+    <section class="topper">
+        {% include "../includes/header.ehtml" %}
+        {% include "../includes/navbar.ehtml" %}
+    </section>
 
     {% block content %}
     {% endblock %}

@@ -1,7 +1,7 @@
 <nav class="navigation">
     <div class="navigation-links">
-        <a class="navigation-link" href="/">Blog</a>
-        <a class="navigation-link" href="/benchmarks">Benchmarks</a>
-        <a class="navigation-link" href="/readme">Readme</a>
+        <a class="navigation-link{% if url == "/" %} active{% endif %}" href="/">Blog</a>
+        <a class="navigation-link{% if url == "/benchmarks" %} active{% endif %}" href="/benchmarks">Benchmarks</a>
+        <a class="navigation-link{% if url == "/readme" %} active{% endif %}" href="/readme">Readme</a>
     </div>
 </nav>
