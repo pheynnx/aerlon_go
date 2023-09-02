@@ -9,22 +9,26 @@
 </h3>
 <h4>Personal blog and HTTP benchmarking</h4>
 <h4>Choose what vessel to journey on:</h4> {% endcomment %}
-<div class="main-posts-container">
-    <div class="featured-posts-container">
-        {% for meta in metaList %}
-            {% if meta.Featured %}
-                {% set featured = true %}
-                {% include "components/post_card.ehtml" %}
-            {% endif %}
-        {% endfor %}
-    </div>
-    <div class="non_featured-posts-container">
-        {% for meta in metaList %}
-            {% if !meta.Featured %}
-                {% set featured = false %}
-                {% include "components/post_card.ehtml" %}
-            {% endif %}
-        {% endfor %}
+<div class="main-index-container">
+    <div class="posts-container">
+        {% if featuredMetaList|length > 0 %}
+            <div class="featured-posts-container">
+                <h2 class="featured-posts-label">Featured Posts</h2>
+                {% for meta in featuredMetaList %}
+                    {% set featured = true %}
+                    {% include "components/post_card.ehtml" %}
+                {% endfor %}
+            </div>
+        {%else%}
+        {% endif %}
+        <div class="non_featured-posts-container">
+            {% for meta in nonFeaturedMetaList %}
+                {% if !meta.Featured %}
+                    {% set featured = false %}
+                    {% include "components/post_card.ehtml" %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

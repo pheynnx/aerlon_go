@@ -2,6 +2,7 @@ package blogcache
 
 import (
 	"path"
+	"slices"
 	"sync"
 
 	"github.com/ArminasAer/aerlon/internal/database"
@@ -27,7 +28,8 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 	// sort posts
 	model.SortPostsByDate(posts)
 
-	meta := []*dto.Meta{}
+	featuredMeta := []*dto.Meta{}
+	nonFeaturedMeta := []*dto.Meta{}
 
 	postsRendered := map[string]string{}
 	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post.ehtml")))
@@ -39,7 +41,15 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 			return nil, err
 		}
 
-		meta = append(meta, dto.MetaFromPost(p))
+		// sort categories by alphabetical order
+		slices.Sort(p.Categories)
+
+		// split slice into two slices by featured bool
+		if p.Featured {
+			featuredMeta = append(featuredMeta, dto.MetaFromPost(p))
+		} else {
+			nonFeaturedMeta = append(nonFeaturedMeta, dto.MetaFromPost(p))
+		}
 
 		pr, err := postsRenderer.Execute(map[string]any{"postStruct": p})
 		if err != nil {
@@ -50,7 +60,7 @@ func InitCache(DB *database.DBPool) (*BlogCache, error) {
 	}
 
 	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index.ehtml")))
-	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"metaList": meta, "url": "/"})
+	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"featuredMetaList": featuredMeta, "nonFeaturedMetaList": nonFeaturedMeta, "url": "/"})
 	if err != nil {
 		return nil, err
 	}

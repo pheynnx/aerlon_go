@@ -1,17 +1,30 @@
 @import "../components/post_card.scss";
 
-.main-posts-container {
+.main-index-container {
   display: grid;
-  margin: 0 5%;
+  margin: 0 3%;
   //   max-width: 56rem;
 }
 
-.featured-posts-container {
+.posts-container {
   justify-self: center;
   max-width: 56rem;
 }
 
+.featured-posts-container {
+  background-color: #222a42;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  border-radius: 0.25rem;
+  border: 1px solid #303c61;
+}
+
+.featured-posts-label {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .non_featured-posts-container {
-  justify-self: center;
-  max-width: 56rem;
+  padding: 10px 10px;
 }
