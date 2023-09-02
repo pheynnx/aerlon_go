@@ -1,6 +1,26 @@
+pre {
+  border-radius: 0.2rem;
+  border: 1px solid #5a68e2;
+  //   max-width: 56rem;
+  //   margin-left: auto;
+  //   margin-right: auto;
+}
+
 code {
   font-family: "CascadiaMono";
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 5px;
+  // border-radius: 0.2rem;
+}
+
+pre code {
+  display: block;
+  overflow-x: auto;
+  padding: 1em 2em;
+  // border-radius: 0.2rem;
+  line-height: normal;
+  color: #fff;
 }
 
 /* PreWrapper */

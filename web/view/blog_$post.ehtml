@@ -5,11 +5,21 @@
 
 {% block content %}
 
-<p>{{ postStruct.Id }}</p>
-<p>{{ postStruct.Date }}</p>
-<p>{{ postStruct.Title }}</p>
-<p>{{ postStruct.Slug }}</p>
-<p>{{ postStruct.Categories }}</p>
-<p>{{ postStruct.Markdown | safe }}</p>
+<div class="main-blog-container">
+    <h1>{{ postStruct.Title }}</h1>
+    <h3>{{ postStruct.Date.Format("January 02, 2006") }}</h3>
+
+    {% comment %} edit classes here {% endcomment %}
+    {% for category in postStruct.Categories %}
+        <a class="post_card-category" href="/category/{{ category }}">
+            <span class="post_card-category-info">{{ category }}</span>
+        </a>
+    {% endfor %}
+
+
+    <div>
+        {{ postStruct.Markdown | safe }}
+    </div>
+</div>
 
 {% endblock %}

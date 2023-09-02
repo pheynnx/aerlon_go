@@ -1,11 +1,11 @@
 @import "./tooling/_fonts.scss";
 @import "./tooling/_variables.scss";
-@import "./tooling/_syntax.scss";
+// @import "./tooling/_syntax.scss";
 
 html {
   font-family: "OpenSans";
   -webkit-tap-highlight-color: transparent;
-  background: #17181a;
+  background: #0c0d0e;
   color: #fff;
   min-height: 100vh;
 
@@ -40,3 +40,5 @@ body {
 
 // views
 @import "./views/_index.scss";
+
+@import "./components/_code_blocks.scss";
