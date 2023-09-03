@@ -2,13 +2,17 @@
   display: flex;
   justify-content: center;
   height: 40px;
-  margin: 15px 0;
+  margin: 20px;
 }
 
 .navigation-links {
   width: fit-content;
   display: flex;
   align-items: center;
+  background-color: #34426b;
+  border: 1px solid #5b678a;
+  padding: 0 20px;
+  border-radius: 0.25rem;
 }
 
 .navigation-link {
@@ -19,6 +23,6 @@
   margin: 0 10px;
 
   &.active {
-    color: #7593ec;
+    // color: #7593ec;
   }
 }

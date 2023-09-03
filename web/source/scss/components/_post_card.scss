@@ -2,10 +2,6 @@
   display: grid;
   grid-template-columns: auto;
   margin-bottom: 25px;
-
-  // background-color: #ca282810;
-  // border: 1px solid #a03838;
-  // border-radius: 0.2rem;
   padding: 10px 10px;
 
   &.featured {
@@ -16,7 +12,7 @@
 
     .post_card-category-info {
       background-color: #000000;
-      border: 1px solid transparent;
+      border: 1px solid #455175;
 
       &:hover {
         background-color: #455175;
@@ -38,6 +34,10 @@
   font-size: 25px;
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  &:hover {
+    color: #7593ec;
   }
 }
 
