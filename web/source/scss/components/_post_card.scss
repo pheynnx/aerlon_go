@@ -5,17 +5,17 @@
   padding: 10px 10px;
 
   &.featured {
-    background-color: #222a42;
-    border: 1px solid #455175;
+    background-color: #267061;
+    border: 1px solid #56bc8d;
     border-radius: 0.2rem;
     padding: 10px 10px;
 
     .post_card-category-info {
       background-color: #000000;
-      border: 1px solid #455175;
+      border: 1px solid #457567;
 
       &:hover {
-        background-color: #455175;
+        background-color: #457567;
         border: 1px solid #d9ddec;
       }
     }
@@ -69,15 +69,15 @@
 .post_card-category-info {
   margin: 0;
   border-radius: 0.25rem;
-  background-color: #222a42;
-  border: 1px solid #455175;
+  background-color: #267061;
+  border: 1px solid #56bc8d;
   font-size: 15px;
   line-height: 1;
   color: #fafafa;
   padding: 4px 8px 6px 8px;
 
   &:hover {
-    background-color: #455175;
+    background-color: #457567;
   }
 }
 
