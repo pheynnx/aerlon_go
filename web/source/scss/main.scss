@@ -3,9 +3,9 @@
 // @import "./tooling/_syntax.scss";
 
 html {
-  font-family: "OpenSans";
+  font-family: "Inter";
   -webkit-tap-highlight-color: transparent;
-  background: #0c0d0e;
+  background: #1b1b1b;
   color: #fff;
   min-height: 100vh;
 
@@ -40,5 +40,6 @@ body {
 
 // views
 @import "./views/_index.scss";
+@import "./views/_blog_post.scss";
 
 @import "./components/_code_blocks.scss";

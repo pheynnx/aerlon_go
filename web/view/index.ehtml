@@ -13,7 +13,7 @@
     <div class="posts-container">
         {% if featuredMetaList|length > 0 %}
             <div class="featured-posts-container">
-                <h2 class="featured-posts-label">Featured Posts</h2>
+                <h2 class="posts-label">Featured Posts</h2>
                 {% for meta in featuredMetaList %}
                     {% set featured = true %}
                     {% include "components/post_card.ehtml" %}
@@ -22,6 +22,7 @@
         {%else%}
         {% endif %}
         <div class="non_featured-posts-container">
+            <h2 class="posts-label">Latest Posts</h2>
             {% for meta in nonFeaturedMetaList %}
                 {% if !meta.Featured %}
                     {% set featured = false %}
