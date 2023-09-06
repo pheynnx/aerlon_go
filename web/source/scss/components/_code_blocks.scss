@@ -28,12 +28,14 @@ pre {
   background-color: #343434;
   margin-left: auto;
   margin-right: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 code {
   font-family: "CascadiaMono";
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 3px 5px;
 }
 
@@ -41,7 +43,7 @@ pre code {
   display: block;
   overflow-x: auto;
   padding: 1em 1.5em;
-  line-height: 1.2;
+  line-height: 1.5;
   color: #fff;
 }
 
