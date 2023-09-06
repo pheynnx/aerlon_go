@@ -34,7 +34,7 @@ func (o *Orbit) HTML(w http.ResponseWriter, code int, html string) {
 	w.Write([]byte(html))
 }
 
-func (o *Orbit) Render(w http.ResponseWriter, r *http.Request, name string, code int, data pongo2.Context) {
+func (o *Orbit) Render(w http.ResponseWriter, name string, code int, data pongo2.Context) {
 	template := pongo2.Must(pongo2.FromCache(path.Join("web/view", name) + ".ehtml"))
 
 	w.Header().Set("Content-Type", "text/html")

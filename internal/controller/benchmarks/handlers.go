@@ -9,6 +9,6 @@ type Handler struct {
 func (h Handler) getBenchmarks() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		h.Orbit.Render(w, r, "benchmarks", 200, map[string]any{"url": "/benchmarks"})
+		h.Orbit.Render(w, "benchmarks", 200, map[string]any{"url": "/benchmarks"})
 	}
 }
