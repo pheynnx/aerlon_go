@@ -2,6 +2,7 @@ package model
 
 import (
 	"bytes"
+	"fmt"
 	"sort"
 	"time"
 
@@ -14,6 +15,7 @@ import (
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/util"
 )
 
 type Post struct {
@@ -36,7 +38,29 @@ var md = goldmark.New(
 	goldmark.WithExtensions(
 		extension.GFM,
 		highlighting.NewHighlighting(
+			highlighting.WithWrapperRenderer(func(w util.BufWriter, context highlighting.CodeBlockContext, entering bool) {
+				lang, _ := context.Language()
+
+				if entering {
+					if lang == nil {
+						w.WriteString("<pre><code>")
+						return
+					}
+					w.WriteString(fmt.Sprintf(`<div class="code-block"><p class="code-block-header"><span class="language-name">%s</span></p><pre class="chroma"><code class="language-`, lang))
+					w.Write(lang)
+					w.WriteString(`" data-lang="`)
+					w.Write(lang)
+					w.WriteString(`">`)
+				} else {
+					if lang == nil {
+						w.WriteString("</pre></code>")
+						return
+					}
+					w.WriteString(`</code></pre></div>`)
+				}
+			}),
 			highlighting.WithFormatOptions(
+				chromahtml.PreventSurroundingPre(true),
 				chromahtml.WithClasses(true),
 			),
 		),

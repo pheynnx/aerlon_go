@@ -1,5 +1,30 @@
+.code-block {
+}
+
+.code-block-header {
+  height: 30px;
+  display: flex;
+  margin: 0;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #313131;
+  border: 1px solid #858585;
+}
+
+.language-name {
+  line-height: 1;
+  align-self: center;
+  margin-left: 10px;
+  font-size: 13px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
 pre {
-  border-radius: 0.5rem;
+  margin-top: 0;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   background-color: #343434;
   margin-left: auto;
   margin-right: auto;
