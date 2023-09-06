@@ -29,4 +29,4 @@ Well Go is an interesting language; it's honestly kind of a boring language. Not
 - explicit error handling is repetitve
 - doesn't use type.(method) syntax; uses method(type) syntax
   - this is subjective, but not my favorite syntax
-- Uppercase syntax for public package exporting instead of a 'pub' keyword
+- uppercase syntax for public package exporting instead of a 'pub' keyword
