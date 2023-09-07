@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	chiMiddleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/joho/godotenv"
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
@@ -40,9 +40,9 @@ func main() {
 	r := chi.NewRouter()
 
 	// root level middleware stack
-	r.Use(middleware.RealIP)
+	r.Use(chiMiddleware.RealIP)
 	// r.Use(middleware.Logger)
-	r.Use(middleware.Recoverer)
+	r.Use(chiMiddleware.Recoverer)
 
 	// server static files
 	// r.Get("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
@@ -54,9 +54,15 @@ func main() {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	// app routers
-	r.Mount("/", blog.Routes(bc))
-	r.Mount("/readme", readme.Routes())
-	r.Mount("/benchmarks", benchmarks.Routes())
+
+	r.Group(func(r chi.Router) {
+
+		// r.Use(middleware.Metrics(db))
+
+		r.Mount("/", blog.Routes(bc))
+		r.Mount("/readme", readme.Routes())
+		r.Mount("/benchmarks", benchmarks.Routes())
+	})
 
 	// admin router
 	r.Mount("/admin", admin.Routes(db))
