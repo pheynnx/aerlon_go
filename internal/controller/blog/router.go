@@ -44,16 +44,16 @@ func Routes(blogCache *blogcache.BlogCache) *Router {
 	})
 
 	// middleware testing
-	router.Route("/weha", func(r chi.Router) {
-		r.Use(func(next http.Handler) http.Handler {
-			return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				next.ServeHTTP(w, r)
-			})
-		})
-		r.Get("/hi", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("HEYA"))
-		})
-	})
+	// router.Route("/weha", func(r chi.Router) {
+	// 	r.Use(func(next http.Handler) http.Handler {
+	// 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	// 			next.ServeHTTP(w, r)
+	// 		})
+	// 	})
+	// 	r.Get("/hi", func(w http.ResponseWriter, r *http.Request) {
+	// 		w.Write([]byte("HEYA"))
+	// 	})
+	// })
 
 	return router
 }

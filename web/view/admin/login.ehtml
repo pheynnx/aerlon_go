@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Admin Login</h1>
-</body>
-</html>
+{% extends "frame/admin-frame.ehtml" %}
+
+{% block main %}
+<h1>Admin Login</h1>
+
+<div>
+    <form id="adminLoginForm">
+        <label class="admin-label" for="password">Password</label>
+        <input class="admin-input" id="password" type="password" name="password" />
+        <label class="admin-label" for="pin">Pin</label>
+        <input class="admin-input" id="pin" type="password" name="pin" />
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script src="/static/js/admin-login-compiled.js"></script>
+{% endblock %}

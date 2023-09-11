@@ -3,7 +3,7 @@ module github.com/ArminasAer/aerlon
 go 1.20
 
 require (
-	github.com/alecthomas/chroma/v2 v2.8.0
+	github.com/alecthomas/chroma/v2 v2.9.1
 	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/google/uuid v1.3.1
