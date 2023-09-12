@@ -1,8 +1,12 @@
 package admin
 
 import (
+	"fmt"
 	"net/http"
 	"os"
+	"time"
+
+	"github.com/ArminasAer/aerlon/internal/auth"
 )
 
 type Handler struct {
@@ -32,6 +36,24 @@ func (h Handler) AdminAPILogin() http.HandlerFunc {
 		pin := r.FormValue("pin")
 
 		if password == os.Getenv("ADMIN_PASSWORD") && pin == os.Getenv("ADMIN_PIN") {
+
+			token, err := auth.CreateAdminJWT(password, pin)
+			if err != nil {
+				fmt.Println(err)
+				w.WriteHeader(http.StatusForbidden)
+				return
+			}
+
+			cookie := http.Cookie{
+				Name:     "auth",
+				Value:    token,
+				Path:     "/admin",
+				HttpOnly: true,
+				Expires:  time.Now().Add(96 * time.Hour),
+			}
+
+			http.SetCookie(w, &cookie)
+
 			w.WriteHeader(http.StatusOK)
 		} else {
 			w.WriteHeader(http.StatusForbidden)

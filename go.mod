@@ -16,5 +16,6 @@ require (
 
 require (
 	github.com/dlclark/regexp2 v1.10.0 // indirect
+	github.com/golang-jwt/jwt/v5 v5.0.0 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 )

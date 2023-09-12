@@ -1,16 +1,19 @@
 {% extends "frame/admin-frame.ehtml" %}
 
 {% block main %}
-<h1>Admin Login</h1>
-
-<div>
-    <form id="adminLoginForm">
-        <label class="admin-label" for="password">Password</label>
-        <input class="admin-input" id="password" type="password" name="password" />
-        <label class="admin-label" for="pin">Pin</label>
-        <input class="admin-input" id="pin" type="password" name="pin" />
-        <button type="submit">Login</button>
-    </form>
+<div class="admin-login-container">
+    <div class="admin-logo">
+        <svg width="100%" height="100%" viewBox="0 0 210 181" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g><path d="M0,180.436l105.174,-180.436l35.46,57.894l-70.679,123.025l-69.955,-0.483" style="fill:#567fbc;"/><path d="M140.634,57.894l68.749,122.301l-68.508,0.241l-23.881,-42.214l23.64,-80.328Z" style="fill:#bc9356;"/><path d="M116.994,138.222l-10.92,-20.072l34.561,-60.255l-23.641,80.327" style="fill:#5a4424;"/></g></svg>
+    </div>
+    <div class="admin-login-form-container">
+        <form class="admin-login-form" id="adminLoginForm">
+            <label class="admin-label" for="password">Password</label>
+            <input class="admin-input" id="password" type="password" name="password" />
+            <label class="admin-label" for="pin">Pin</label>
+            <input class="admin-input" id="pin" type="password" name="pin" />
+            <button class="admin-button" type="submit">Login</button>
+        </form>
+    </div>
 </div>
 
 <script src="/static/js/admin-login-compiled.js"></script>

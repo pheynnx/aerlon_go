@@ -8,6 +8,13 @@
         <title>Aerlon</title>
         <link
         rel="preload"
+        href="/static/fonts/Inter.ttf"
+        as="font"
+        type="font/ttf"
+        crossorigin
+        />
+        <link
+        rel="preload"
         href="/static/fonts/OpenSans.ttf"
         as="font"
         type="font/ttf"
