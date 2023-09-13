@@ -15,13 +15,6 @@
         />
         <link
         rel="preload"
-        href="/static/fonts/OpenSans.ttf"
-        as="font"
-        type="font/ttf"
-        crossorigin
-        />
-        <link
-        rel="preload"
         href="/static/fonts/CascadiaMono.woff2"
         as="font"
         type="font/woff2"
