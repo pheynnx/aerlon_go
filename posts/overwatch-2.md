@@ -1,5 +1,5 @@
 ---
-Title: To New Seasons
+Title: Overwatch 2
 Date: September 11, 2023
 Slug: overwatch-2
 Series: gaming
