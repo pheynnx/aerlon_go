@@ -9,11 +9,9 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/ArminasAer/aerlon/internal/blogcache"
-	"github.com/ArminasAer/aerlon/internal/controller/admin"
 	"github.com/ArminasAer/aerlon/internal/controller/benchmarks"
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
 	"github.com/ArminasAer/aerlon/internal/controller/readme"
-	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
 )
 
@@ -25,13 +23,13 @@ func main() {
 	}
 
 	// initialize sqlx pool
-	db, err := database.NewDBPool()
-	if err != nil {
-		log.Fatal(err)
-	}
+	// db, err := database.NewDBPool()
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
 	// initialize blog html cache
-	bc, err := blogcache.InitCache(db)
+	bc, err := blogcache.InitCache()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,9 +61,6 @@ func main() {
 		r.Mount("/readme", readme.Routes())
 		r.Mount("/benchmarks", benchmarks.Routes())
 	})
-
-	// admin router
-	r.Mount("/admin", admin.Routes(db))
 
 	// start server
 	orbit.Launch(r)

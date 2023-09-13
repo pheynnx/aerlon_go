@@ -1,10 +1,7 @@
 import { build } from "esbuild";
 
 await build({
-  entryPoints: [
-    "web/source/js/scripts/navigation.js",
-    "web/source/js/scripts/admin-login.js",
-  ],
+  entryPoints: ["web/source/js/scripts/navigation.js"],
   entryNames: "[name]-compiled",
   bundle: true,
   minify: true,

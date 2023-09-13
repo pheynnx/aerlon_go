@@ -3,39 +3,35 @@ package model
 import (
 	"bytes"
 	"fmt"
+	"os"
+	"slices"
 	"sort"
 	"time"
 
-	"github.com/ArminasAer/aerlon/internal/database"
-
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
-	"github.com/google/uuid"
-	"github.com/lib/pq"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
+	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/util"
 )
 
 type Post struct {
-	ID            uuid.UUID      `json:"id"`
-	Date          time.Time      `json:"date"`
-	Slug          string         `json:"slug"`
-	Title         string         `json:"title"`
-	Series        string         `json:"series"`
-	Categories    pq.StringArray `json:"categories"`
-	Markdown      string         `json:"markdown"`
-	CreatedAt     string         `db:"created_at" json:"created_at"`
-	UpdatedAt     string         `db:"updated_at" json:"updated_at"`
-	Published     bool           `json:"published"`
-	Featured      bool           `json:"featured"`
-	PostSnippet   string         `db:"post_snippet" json:"post_snippet"`
-	SeriesSnippet string         `db:"series_snippet" json:"series_snippet"`
+	Title       string    `json:"title"`
+	Date        time.Time `json:"date"`
+	Slug        string    `json:"slug"`
+	Series      string    `json:"series"`
+	Categories  []string  `json:"categories"`
+	Markdown    string    `json:"markdown"`
+	Published   bool      `json:"published"`
+	Featured    bool      `json:"featured"`
+	PostSnippet string    `db:"post_snippet" json:"post_snippet"`
 }
 
 var md = goldmark.New(
 	goldmark.WithExtensions(
+		meta.Meta,
 		extension.GFM,
 		highlighting.NewHighlighting(
 			highlighting.WithWrapperRenderer(func(w util.BufWriter, context highlighting.CodeBlockContext, entering bool) {
@@ -70,16 +66,67 @@ var md = goldmark.New(
 	),
 )
 
-func (p *Post) ConvertMarkdownToHTML() error {
-	var buf bytes.Buffer
-	err := md.Convert([]byte(p.Markdown), &buf)
+func NewPostArray() ([]*Post, error) {
+	files, err := os.ReadDir("./posts")
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	p.Markdown = buf.String()
+	var posts []*Post
 
-	return nil
+	for _, f := range files {
+		content, err := os.ReadFile(fmt.Sprintf("./posts/%s", f.Name()))
+		if err != nil {
+			return nil, err
+		}
+
+		post, err := ParseMarkdownAndMeta(content)
+		if err != nil {
+			return nil, err
+		}
+
+		posts = append(posts, post)
+	}
+
+	// Sort
+	SortPostsByDate(posts)
+
+	return posts, nil
+}
+
+func ParseMarkdownAndMeta(content []byte) (*Post, error) {
+	var buf bytes.Buffer
+	cxt := parser.NewContext()
+	err := md.Convert(content, &buf, parser.WithContext(cxt))
+	if err != nil {
+		return nil, err
+	}
+
+	meta := meta.Get(cxt)
+
+	date, err := time.Parse("January 2, 2006", meta["Date"].(string))
+	if err != nil {
+		return nil, err
+	}
+
+	var categories []string
+	for _, c := range meta["Categories"].([]interface{}) {
+		categories = append(categories, c.(string))
+	}
+
+	slices.Sort(categories)
+
+	return &Post{
+		Title:       meta["Title"].(string),
+		Date:        date,
+		Slug:        meta["Slug"].(string),
+		Series:      meta["Series"].(string),
+		Categories:  categories,
+		Markdown:    buf.String(),
+		Published:   meta["Published"].(bool),
+		Featured:    meta["Featured"].(bool),
+		PostSnippet: meta["PostSnippet"].(string),
+	}, nil
 }
 
 func SortPostsByDate(posts []*Post) {
@@ -94,24 +141,4 @@ func SortPostsByDate(posts []*Post) {
 		}
 		return b < a
 	})
-}
-
-func GetPostFromDB(DB *database.DBPool, id uuid.UUID) (*Post, error) {
-	var post *Post
-	err := DB.Get(&post, "SELECT * FROM post WHERE id = $1", id)
-	if err != nil {
-		return nil, err
-	}
-
-	return post, nil
-}
-
-func GetPostsFromDB(DB *database.DBPool) ([]*Post, error) {
-	var posts []*Post
-	err := DB.Select(&posts, "SELECT * FROM post")
-	if err != nil {
-		return nil, err
-	}
-
-	return posts, nil
 }

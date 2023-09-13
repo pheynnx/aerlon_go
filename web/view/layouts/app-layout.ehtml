@@ -3,7 +3,7 @@
 {% block main %}
 
     <section class="topper">
-        {% include "../includes/navbar.ehtml" %}
+        {% comment %} {% include "../includes/navbar.ehtml" %} {% endcomment %}
         {% include "../includes/header.ehtml" %}
     </section>
 
