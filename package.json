@@ -3,7 +3,7 @@
     "dev": "run-p -l dev:css dev:esbuild dev:go",
     "dev:css": "sass --no-source-map --style=compressed --watch web/source/scss:web/static/css",
     "dev:esbuild": "node --watch-path=./web/source/js ./web/source/js/compiler.mjs",
-    "dev:go": "air",
+    "dev:go": "go run ./cmd/aerlon/ .",
     "build": "run-s -l build:*",
     "build:css": "sass --no-source-map --style=compressed web/source/scss:web/static/css",
     "build:esbuild": "node ./web/source/js/compiler.mjs",
