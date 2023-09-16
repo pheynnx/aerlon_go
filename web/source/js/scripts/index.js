@@ -41,5 +41,10 @@ layoutSwitchBtn.addEventListener("click", () => {
       postContainer.classList.remove("compact");
       indexHeader.classList.remove("compact");
       break;
+    default:
+      layoutSwitchBtn.classList.add("compact");
+      layoutSwitchBtn.classList.remove("full");
+      postContainer.classList.add("compact");
+      indexHeader.classList.add("compact");
   }
 });
