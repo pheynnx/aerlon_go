@@ -1,0 +1,6 @@
+<div class="post_card{% if meta.Featured %} featured{% endif %} compact">
+    <a class="post_card-anchor" href="/blog/{{ meta.Slug }}">
+      <p class="post_card-title">{{ meta.Title }}</p>
+    </a>
+    <p class="post_card-date">{{ meta.Date.Format("January 02, 2006") }}</p>
+</div>

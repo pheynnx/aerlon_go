@@ -1,5 +1,0 @@
-{% extends "frame/admin-frame.ehtml" %}
-
-{% block main %}
-<h1>Admin Dashboard</h1>
-{% endblock %}

@@ -28,13 +28,51 @@ func Routes(blogCache *blogcache.BlogCache) *Router {
 
 	h := Handler{router}
 
-	// blogRouter.Use(func(next http.Handler) http.Handler {
-	// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// 		next.ServeHTTP(w, r)
-	// 	})
-	// })
-
 	router.Get("/", h.getBlogIndex())
+	router.Get("/switch", func(w http.ResponseWriter, r *http.Request) {
+
+		c, err := r.Cookie("layout")
+		if err != nil {
+
+			cookie := http.Cookie{
+				Name:     "layout",
+				Value:    "compact",
+				Path:     "/",
+				HttpOnly: false,
+			}
+
+			http.SetCookie(w, &cookie)
+
+			h.Orbit.Render(w, "partials/post_container_compact", http.StatusOK, map[string]any{"metaList": h.blogCache.MetaCache})
+			return
+		}
+
+		if c.Value == "compact" {
+
+			cookie := http.Cookie{
+				Name:     "layout",
+				Value:    "full",
+				Path:     "/",
+				HttpOnly: false,
+			}
+
+			http.SetCookie(w, &cookie)
+
+			h.Orbit.Render(w, "partials/post_container", http.StatusOK, map[string]any{"metaList": h.blogCache.MetaCache})
+			return
+		}
+
+		cookie := http.Cookie{
+			Name:     "layout",
+			Value:    "compact",
+			Path:     "/",
+			HttpOnly: false,
+		}
+
+		http.SetCookie(w, &cookie)
+
+		h.Orbit.Render(w, "partials/post_container_compact", http.StatusOK, map[string]any{"metaList": h.blogCache.MetaCache})
+	})
 
 	router.Route("/blog", func(r chi.Router) {
 		r.Get("/", func(w http.ResponseWriter, r *http.Request) {

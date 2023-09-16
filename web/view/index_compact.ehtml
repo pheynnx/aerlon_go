@@ -10,7 +10,7 @@
         </button>
     </div>    
     <div id="posts" class="posts-container">
-        {% include "partials/post_container.ehtml" %}
+        {% include "partials/post_container_compact.ehtml" %}
     </div>
 </div>
 <script src="/static/js/index-compiled.js"></script>

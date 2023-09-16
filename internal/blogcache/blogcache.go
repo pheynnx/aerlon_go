@@ -9,8 +9,10 @@ import (
 )
 
 type BlogCache struct {
-	IndexMeta string
-	Posts     map[string]string
+	IndexMeta        string
+	IndexCompactMeta string
+	Posts            map[string]string
+	MetaCache        []*model.Post
 }
 
 func InitCache() (*BlogCache, error) {
@@ -19,8 +21,7 @@ func InitCache() (*BlogCache, error) {
 		return nil, err
 	}
 
-	featuredMeta := []*model.Post{}
-	nonFeaturedMeta := []*model.Post{}
+	metaList := []*model.Post{}
 
 	postsRendered := map[string]string{}
 	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post.ehtml")))
@@ -33,11 +34,8 @@ func InitCache() (*BlogCache, error) {
 		// split slice into two slices by featured bool
 
 		if p.Published {
-			if p.Featured {
-				featuredMeta = append(featuredMeta, p)
-			} else {
-				nonFeaturedMeta = append(nonFeaturedMeta, p)
-			}
+			metaList = append(metaList, p)
+
 		}
 
 		pr, err := postsRenderer.Execute(map[string]any{"postStruct": p})
@@ -49,14 +47,22 @@ func InitCache() (*BlogCache, error) {
 	}
 
 	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index.ehtml")))
-	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"featuredMetaList": featuredMeta, "nonFeaturedMetaList": nonFeaturedMeta, "url": "/"})
+	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"metaList": metaList, "url": "/"})
+	if err != nil {
+		return nil, err
+	}
+
+	indexCompactRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index_compact.ehtml")))
+	blogIndexCompactRendered, err := indexCompactRenderer.Execute(map[string]any{"metaList": metaList, "url": "/"})
 	if err != nil {
 		return nil, err
 	}
 
 	return &BlogCache{
-		IndexMeta: blogIndexRendered,
-		Posts:     postsRendered,
+		IndexMeta:        blogIndexRendered,
+		IndexCompactMeta: blogIndexCompactRendered,
+		Posts:            postsRendered,
+		MetaCache:        metaList,
 	}, nil
 }
 
