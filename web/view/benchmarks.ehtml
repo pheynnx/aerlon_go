@@ -1,8 +1,0 @@
-{% extends "layouts/app-layout.ehtml" %}
-
-{% block title %}
-{% endblock %}
-
-{% block content %}
-    <h1>Benchmarks</h1>
-{% endblock %}

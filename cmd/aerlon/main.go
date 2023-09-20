@@ -8,11 +8,9 @@ import (
 	chiMiddleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/joho/godotenv"
 
-	"github.com/ArminasAer/aerlon/internal/blogcache"
-	"github.com/ArminasAer/aerlon/internal/controller/benchmarks"
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
-	"github.com/ArminasAer/aerlon/internal/controller/readme"
 	"github.com/ArminasAer/aerlon/internal/orbit"
+	"github.com/ArminasAer/aerlon/internal/static"
 )
 
 func main() {
@@ -29,7 +27,7 @@ func main() {
 	// }
 
 	// initialize blog html cache
-	bc, err := blogcache.InitCache()
+	hs, err := static.InitStore()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,9 +55,7 @@ func main() {
 
 		// r.Use(middleware.Metrics(db))
 
-		r.Mount("/", blog.Routes(bc))
-		r.Mount("/readme", readme.Routes())
-		r.Mount("/benchmarks", benchmarks.Routes())
+		r.Mount("/", blog.Routes(hs))
 	})
 
 	// start server

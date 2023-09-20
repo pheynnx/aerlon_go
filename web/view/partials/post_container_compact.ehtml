@@ -1,3 +1,0 @@
-{% for meta in metaList %}
-    {% include "components/post_card_compact.ehtml" %}
-{% endfor %}

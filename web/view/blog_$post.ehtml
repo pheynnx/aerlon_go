@@ -7,11 +7,11 @@
 
 <div class="main-blog-container">
     <div class="blog-post-markdown-container">
-        <h1 class="blog-post-markdown-title">{{ postStruct.Title }}</h1>
-        <h3 class="blog-post-markdown-date">{{ postStruct.Date.Format("January 02, 2006") }}</h3>
+        <h1 class="blog-post-markdown-title">{{ post.Title }}</h1>
+        <h3 class="blog-post-markdown-date">{{ post.Date.Format("January 02, 2006") }}</h3>
     
         <div class="blog-post-markdown-categories">
-            {% for category in postStruct.Categories %}
+            {% for category in post.Categories %}
                 <a class="post_card-category" href="/category/{{ category }}">
                     <span class="post_card-category-info">{{ category }}</span>
                 </a>
@@ -19,7 +19,7 @@
         </div>
             
         <div class="blog-post-markdown">
-            {{ postStruct.Markdown | safe }}
+            {{ post.Markdown | safe }}
         </div> 
     </div>
 </div>

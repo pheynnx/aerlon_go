@@ -7,7 +7,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/ArminasAer/aerlon/internal/blogcache"
+	"github.com/ArminasAer/aerlon/internal/static"
 	"github.com/flosch/pongo2/v6"
 )
 
@@ -42,8 +42,8 @@ func (o *Orbit) Render(w http.ResponseWriter, name string, code int, data pongo2
 	template.ExecuteWriter(data, w)
 }
 
-func (o *Orbit) CacheRender(w http.ResponseWriter, bc *blogcache.BlogCache, code int, slug string) {
-	post, ok := bc.Posts[slug]
+func (o *Orbit) StaticRender(w http.ResponseWriter, hs *static.HTMLStore, code int, slug string) {
+	post, ok := hs.StaticPostMap[slug]
 	if !ok {
 		o.Error(w, 404, fmt.Sprintf("%s is not found", slug))
 		return

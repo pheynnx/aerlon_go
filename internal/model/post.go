@@ -42,7 +42,7 @@ var md = goldmark.New(
 						w.WriteString("<pre><code>")
 						return
 					}
-					w.WriteString(fmt.Sprintf(`<div class="code-block"><p class="code-block-header"><span class="language-name">%s</span></p><pre class="chroma"><code class="language-`, lang))
+					w.WriteString(fmt.Sprintf(`<div class="code-block"><p class="code-block-header"><span class="language-name">%s</span></p><pre><code class="language-`, lang))
 					w.Write(lang)
 					w.WriteString(`" data-lang="`)
 					w.Write(lang)
@@ -85,10 +85,13 @@ func NewPostArray() ([]*Post, error) {
 			return nil, err
 		}
 
+		// sort categories by alphabetical order
+		slices.Sort(post.Categories)
+
 		posts = append(posts, post)
 	}
 
-	// Sort
+	// sort all posts by date
 	SortPostsByDate(posts)
 
 	return posts, nil

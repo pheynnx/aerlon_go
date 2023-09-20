@@ -1,37 +1,19 @@
 .header-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 70px;
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  // height: 70px;
   display: grid;
   justify-items: center;
 }
 
 .header-logo-anchor {
-  height: 70px;
-  width: min-content;
+  // height: 70px;
+  // width: min-content;
 }
 
 .header-logo {
-  height: 70px;
-  width: 81px;
-
-  &:hover {
-    .upper {
-      fill: #bc9356;
-    }
-
-    .lower {
-      fill: #567fbc;
-    }
-  }
-}
-
-.upper {
-  fill: #567fbc;
-  transition: all 0.6s;
-}
-
-.lower {
-  fill: #bc9356;
-  transition: all 0.6s;
+  // height: 70px;
+  // width: 81px;
+  color: #fff;
+  font-size: 40px;
 }
