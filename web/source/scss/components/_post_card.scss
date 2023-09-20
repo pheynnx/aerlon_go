@@ -1,50 +1,27 @@
 .post_card {
+  padding-left: 20px;
   display: grid;
   grid-template-columns: auto;
-  // width: max-content;
   margin-bottom: 15px;
-  padding: 10px 10px;
-  border-radius: 0.25rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  justify-items: center;
-  text-align: center;
+  // justify-items: center;
+  // text-align: center;
 
   &:nth-child(even) {
-    background-color: #343434;
+    // background-color: #343434;
   }
 
   &:nth-child(odd) {
-    border: 1px solid #2e2c29;
-  }
-
-  &.compact {
-    margin: auto;
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 10px;
-
-    .post_card-title {
-      padding: 0;
-      font-size: 20px;
-    }
-
-    .post_card-date {
-      margin-bottom: 0;
-      font-size: 13px;
-    }
+    // border: 1px solid #2e2c29;
   }
 
   &.featured {
-    background-color: #567fbc11;
-    border: 1px solid #567fbc;
     border-radius: 0.5rem;
 
     .post_card-category-info {
-      background-color: #567fbc5b;
-      border: 1px solid transparent;
+      border: 1px solid #bc9356;
 
       &:hover {
-        background-color: #567fbc;
+        background-color: #bc9356;
       }
     }
 
@@ -55,30 +32,26 @@
 }
 
 .post_card-header {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   padding-bottom: 8px;
   align-items: center;
   flex-wrap: wrap;
-  justify-items: center;
-  justify-content: center;
+  // justify-items: center;
   font-size: 18px;
-
-  // column-gap: 10px;
 }
 
 .post_card-title {
   margin: 0;
   color: #fff;
-  font-weight: 500;
-  font-size: 19px;
+  // font-weight: 500;
+  font-size: 17px;
   margin-bottom: 4px;
   &::first-letter {
     text-transform: uppercase;
   }
 
   &:hover {
-    color: #bc9356;
+    color: #567fbc;
   }
 }
 
@@ -91,14 +64,14 @@
   margin: 0;
   color: #ffffff;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .post_card-categories {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
+  // justify-content: center;
 }
 
 .post_card-category {
@@ -111,10 +84,10 @@
   border-radius: 0.25rem;
   background-color: #242320;
   border: 1px solid #567fbc;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1;
   color: #fafafa;
-  padding: 4px 8px 6px 8px;
+  padding: 3px 7px 5px 7px;
 
   &:hover {
     background-color: #567fbc;

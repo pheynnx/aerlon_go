@@ -5,12 +5,19 @@
 
 {% block content %}
 <div class="main-index-container"> 
-    <div id="posts" class="posts-container">
-        {% for post in postList %}
-            {% if post.Featured %}
-                {% include "components/post_card.ehtml" %}
-            {% endif %}
-        {% endfor %}
+    <div class="posts-container">
+        <h1 class="posts-main-label">Blog</h1>
+        {% if containsFeatured %}
+            <div class="featured-container">
+                <h1 class="posts-label">Featued Posts</h1>
+                {% for post in postList %}
+                    {% if post.Featured %}
+                        {% include "components/post_card.ehtml" %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h1 class="posts-label">Latest Posts</h1>
         {% for post in postList %}
             {% if !post.Featured %}
                 {% include "components/post_card.ehtml" %}

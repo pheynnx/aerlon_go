@@ -42,7 +42,7 @@ var md = goldmark.New(
 						w.WriteString("<pre><code>")
 						return
 					}
-					w.WriteString(fmt.Sprintf(`<div class="code-block"><p class="code-block-header"><span class="language-name">%s</span></p><pre><code class="language-`, lang))
+					w.WriteString(fmt.Sprintf(`<div class="code-block"><p class="code-block-header"><span class="language-name">%s</span></p><pre class="aer"><code class="language-`, lang))
 					w.Write(lang)
 					w.WriteString(`" data-lang="`)
 					w.Write(lang)

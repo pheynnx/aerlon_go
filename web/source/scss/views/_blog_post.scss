@@ -14,15 +14,16 @@
 
 .blog-post-markdown-title {
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 30px;
   margin: 0;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .blog-post-markdown-date {
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -31,18 +32,23 @@
   flex-wrap: wrap;
   row-gap: 6px;
   column-gap: 6px;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 10px;
   justify-content: center;
 }
 
 .blog-post-markdown {
   word-wrap: break-word;
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.blog-post-markdown p:nth-child(1) {
+  margin-top: 0;
 }
 
 .blog-post-markdown p,
 .blog-post-markdown li {
+  color: #e2e2e2;
   line-height: 2;
   letter-spacing: 0.017em;
   -webkit-font-smoothing: antialiased;

@@ -19,6 +19,7 @@ func InitStore() (*HTMLStore, error) {
 	}
 
 	postList := []*model.Post{}
+	containsFeatured := false
 
 	postsRendered := map[string]string{}
 	postsRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "blog_$post.ehtml")))
@@ -29,6 +30,10 @@ func InitStore() (*HTMLStore, error) {
 			postList = append(postList, p)
 		}
 
+		if p.Featured {
+			containsFeatured = true
+		}
+
 		pr, err := postsRenderer.Execute(map[string]any{"post": p})
 		if err != nil {
 			return nil, err
@@ -37,7 +42,7 @@ func InitStore() (*HTMLStore, error) {
 	}
 
 	indexRenderer := pongo2.Must(pongo2.FromCache(path.Join("web/view", "index.ehtml")))
-	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"postList": postList})
+	blogIndexRendered, err := indexRenderer.Execute(map[string]any{"postList": postList, "containsFeatured": containsFeatured})
 	if err != nil {
 		return nil, err
 	}
