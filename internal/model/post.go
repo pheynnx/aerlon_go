@@ -26,7 +26,7 @@ type Post struct {
 	Markdown    string    `json:"markdown"`
 	Published   bool      `json:"published"`
 	Featured    bool      `json:"featured"`
-	PostSnippet string    `db:"post_snippet" json:"post_snippet"`
+	PostSnippet string    `json:"post_snippet"`
 }
 
 var md = goldmark.New(
