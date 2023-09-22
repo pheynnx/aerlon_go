@@ -64,7 +64,68 @@ Then I started realizing the downfalls of this kind of set. I would have to run 
 
 #### Version 2.0 of the caching system
 
-And then I stopped and really thought hard about it one day, simple is usually better. Don't try to recreate the wheel. A dual database caching system with a frontend admin console is cool and all... but is it needed? Is it really serving my needs well? Am I in constant need to quickly update a post on the go? Is updating markdown data in an HTML textarea tag a great experience? And so I made the decision to keep it simple and just head back to writing all my posts in .markdown files and storing them alongside my code source. This is a simple and basic solution. No need to overcomplicate everything. Buttttttt! I still wanted my site to be extremely fast to the end user; and I wanted all the posts and the home page index list to be extremely fast as well! So I am still implementing a startup caching system that generates in-memory HTML strings. I am not generating statif HTML files. I am generating in-memory strings in a map; and these strings just happen to be render HTML templates. I did some benchmarking and prototyping over the last couple of months, and I noticed that serving a large string that is stored in a map is faster then serving a file, and its definitly faster then an HTML template engine rendering the HTML on demand. There is a time and place for on demand HTML rendering, but in my case my current set of HTML is better static and prerendered. Going back, serving an HTML file from an HTTP endpoint will always only be as fast as the file I/O of your server or computer. But serving a string from a variable is constrained to the speed of your memory. Now... please don't take my words as gospel, in my current setup this system works for me. There are pros and cons to most different things in all areas of life. Okay enough of that, lets look at some code snippets of the posts and the caching system.
+And then I stopped and really thought hard about it one day, simple is usually better. Don't try to recreate the wheel. A dual database caching system with a frontend admin console is cool and all... but is it needed? Is it really serving my needs well? Am I in constant need to quickly update a post on the go? Is updating markdown data in an HTML textarea tag a great experience? And so I made the decision to keep it simple and just head back to writing all my posts in .markdown files and storing them alongside my code source. This is a simple and basic solution. No need to overcomplicate everything. Buttttttt! I still wanted my site to be extremely fast to the end user; and I wanted all the posts and the home page index list to be extremely fast as well! So I am still implementing a startup caching system that generates in-memory HTML strings. I am not generating statif HTML files. I am generating in-memory strings in a map; and these strings just happen to be render HTML templates. I did some benchmarking and prototyping over the last couple of months, and I noticed that serving a large string that is stored in a map is faster then serving a file, and its definitly faster then an HTML template engine rendering the HTML on demand. There is a time and place for on demand HTML rendering, but in my case my current set of HTML is better static and prerendered. Going back, serving an HTML file from an HTTP endpoint will always only be as fast as the file I/O of your server or computer. But serving a string from a variable is constrained to the speed of your memory. Here is a quick test to show the speed difference; this is on my local laptop. All tests were done locally, so these aren't real world numbers, its just a demonstration of the difference in raw performance of how the server serves the HTML.
+
+The `/render` path renders the html file through the `http/template` package. The `/io` path serves the file from the file system using the `http.ServeFile` method. Lastly the `/variable` path reads the `index.html` file to a `[]byte`, stores it into a variable named `ctx` and serves the byte slice. You can also see I am setting the headers manually on this path.
+
+```go
+func main() {
+	http.Handle("/render", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		tmpl, _ := template.ParseFiles("./index.html")
+		_ = tmpl.Execute(w, nil)
+	}))
+
+	http.Handle("/io", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "index.html")
+	}))
+
+	ctx, _ := os.ReadFile("./index.html")
+
+	http.Handle("/variable", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/html")
+		w.WriteHeader(http.StatusOK)
+		w.Write(ctx)
+	}))
+
+	http.ListenAndServe(":8000", nil)
+}
+```
+
+Testing was done with `https://github.com/wg/wrk`, with the paratmers: `wrk -t12 -c400 -d30s`. Here are the results; and please remember this is on a local machine, these values are pretty much useless except to show differences in the amount of http requests served per the differnent methods of delivery. At the end of the day it is all just HTML... which at the end of the day is just the mighty string!
+
+```Bash
+asusx :: ~/wrk ‹master› » ./wrk -t12 -c400 -d30s http://127.0.0.1:8000/render
+Running 30s test @ http://127.0.0.1:8000/render
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    50.99ms  107.99ms   1.21s    90.26%
+    Req/Sec     3.87k     2.27k   22.22k    61.22%
+  1387417 requests in 30.07s, 6.68GB read
+Requests/sec:  46133.26
+Transfer/sec:    227.46MB
+
+asusx :: ~/wrk ‹master› » ./wrk -t12 -c400 -d30s http://127.0.0.1:8000/io
+Running 30s test @ http://127.0.0.1:8000/io
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     8.36ms   19.79ms 357.40ms   93.14%
+    Req/Sec    13.80k     8.06k   61.09k    60.67%
+  4933886 requests in 30.09s, 23.98GB read
+Requests/sec: 163947.80
+Transfer/sec:    816.01MB
+
+asusx :: ~/wrk ‹master› » ./wrk -t12 -c400 -d30s http://127.0.0.1:8000/variable
+Running 30s test @ http://127.0.0.1:8000/variable
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     3.89ms    7.85ms 156.76ms   91.71%
+    Req/Sec    20.72k    12.05k  107.47k    61.30%
+  7392656 requests in 30.09s, 35.49GB read
+Requests/sec: 245678.04
+Transfer/sec:      1.18GB
+```
+
+You can see a pretty big difference in the amount of requests served per each method; pretty cool to look at! Okay enough of that, lets look at some code snippets of the posts and the caching system.
 
 ##### Post struct
 

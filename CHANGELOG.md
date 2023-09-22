@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## I wont be updating this changelog until the project hits 0.5
 
+## [0.3.2] - 2023-09-22
+
 ## [0.3.1] - 2023-09-20
 
 ## [0.3.0] - 2023-09-19
