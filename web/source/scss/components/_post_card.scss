@@ -2,27 +2,41 @@
   padding: 0 10px;
   display: grid;
   grid-template-columns: auto;
-  margin-bottom: 15px;
-  // justify-items: center;
-  // text-align: center;
+  margin-bottom: 20px;
+  justify-items: center;
+  text-align: center;
+  padding: 15px 10px 15px 10px;
+  border-radius: 0.5rem;
+  height: min-content;
+  width: 100%;
+  max-width: 24rem;
+  justify-self: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  &:nth-child(even) {
-    // background-color: #343434;
-  }
+  background-color: #343434;
+  border: 1px solid #2e2c29;
 
-  &:nth-child(odd) {
-    // border: 1px solid #2e2c29;
-  }
+  // &:nth-child(odd) {
+  //   border: 1px solid #2e2c29;
+  // }
 
   &.featured {
-    border-radius: 0.5rem;
+    width: 100%;
+    max-width: none;
+    background-color: #bc935634;
+    border: 1px solid #bc9356;
 
     .post_card-category-info {
       border: 1px solid #bc9356;
+      background-color: #bc93564d;
 
       &:hover {
-        // background-color: #bc9356;
+        // background-color: #bc7d56;
       }
+    }
+
+    .post_card-header {
+      padding-bottom: 8px;
     }
 
     &:last-child {
@@ -31,9 +45,17 @@
   }
 }
 
+@media only screen and (max-width: 890px) {
+  .post_card {
+    &:nth-child(even):not(.featured) {
+      background-color: transparent;
+    }
+  }
+}
+
 .post_card-header {
   display: grid;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   align-items: center;
   flex-wrap: wrap;
   // justify-items: center;
@@ -43,20 +65,21 @@
 .post_card-title {
   margin: 0;
   color: #fff;
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 4px;
   &::first-letter {
     text-transform: uppercase;
   }
 
   &:hover {
-    color: #567fbc;
+    color: #e8714f;
   }
 }
 
 .post_card-anchor {
   text-decoration: none;
   width: fit-content;
+  justify-self: center;
 }
 
 .post_card-date {
@@ -70,7 +93,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  // justify-content: center;
+  justify-content: center;
 }
 
 .post_card-category {
@@ -86,10 +109,11 @@
   font-size: 12px;
   line-height: 1;
   color: #fafafa;
-  padding: 3px 7px 5px 7px;
+  padding: 4px 7px 5px 7px;
+  box-shadow: 0 6px 14px #00000014;
 
   &:hover {
-    // background-color: #567fbc;
+    // background-color: #56bc7d;
   }
 }
 
@@ -98,9 +122,9 @@
 }
 
 .post_card-snippet {
-  font-size: 15px;
+  font-size: 14px;
   margin: 0;
-  color: #fff;
+  color: #c0c0c0;
   padding: 0 2px;
   line-height: 1.7;
 }

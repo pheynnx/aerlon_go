@@ -11,7 +11,7 @@ Categories:
   - goldmark
 Published: true
 Featured: true
-PostSnippet: ""
+PostSnippet: "An intro in the design behind aerlon.com"
 ---
 
 It has been way to long... and after maybe fifth different iterations of the this site and multiple years... I may, haha, have this as the final backend system for the blog site! I am a little bit of a perfecionist when it comes to coding and have put my hands on many differnet http backend/frontend systems over the last couple of years. Here are some of the frameworks I have worked with.

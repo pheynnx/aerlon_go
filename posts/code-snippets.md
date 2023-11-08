@@ -12,6 +12,10 @@ Categories:
   - ts
   - nim
   - zig
+  - c++
+  - c#
+  - c
+  - c-
 Published: true
 Featured: false
 PostSnippet: Testing coding syntax and html code blocks.

@@ -10,7 +10,7 @@ Categories:
   - huh?
 Published: true
 Featured: true
-PostSnippet: ""
+PostSnippet: "Coding burnout is real; but coding in a healthy way can be really good for our minds."
 ---
 
 What the heck is going on with JavaScript right now?

@@ -10,11 +10,18 @@
   flex-direction: column;
   justify-self: center;
   width: 100%;
-  max-width: 20rem;
+  max-width: 50rem;
 }
 
 .featured-container {
   margin-bottom: 20px;
+}
+
+.non_featured-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4%;
+  justify-content: center;
 }
 
 .posts-main-label {

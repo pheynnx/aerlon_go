@@ -4,6 +4,9 @@
         <p class="post_card-title">{{ post.Title }}</p>
       </a>
       <p class="post_card-date">{{ post.Date.Format("January 02, 2006") }}</p>
+      {% if post.Featured %}
+      <p class="post_card-snippet">{{ post.PostSnippet }}</p>
+      {% endif %}
     </div>
     <div class="post_card-categories">
       {% for category in post.Categories %}
