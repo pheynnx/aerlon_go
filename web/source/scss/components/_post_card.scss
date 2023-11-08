@@ -23,12 +23,12 @@
   &.featured {
     width: 100%;
     max-width: none;
-    background-color: #bc935634;
-    border: 1px solid #bc9356;
+    background-color: #ec612a0e;
+    border: 1px solid #ec622a;
 
     .post_card-category-info {
-      border: 1px solid #bc9356;
-      background-color: #bc93564d;
+      border: 1px solid #ec622a;
+      background-color: #ec612a71;
 
       &:hover {
         // background-color: #bc7d56;
@@ -72,7 +72,7 @@
   }
 
   &:hover {
-    color: #e8714f;
+    color: #ec622a;
   }
 }
 
@@ -105,7 +105,7 @@
   margin: 0;
   border-radius: 0.25rem;
   background-color: #242320;
-  border: 1px solid #567fbc;
+  border: 1px solid #3b70e8;
   font-size: 12px;
   line-height: 1;
   color: #fafafa;

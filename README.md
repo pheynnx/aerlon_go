@@ -1,6 +1,6 @@
 # Aerlon
 
-## [0.4.0] alpha
+## [0.4.1] alpha
 
 ### About
 
