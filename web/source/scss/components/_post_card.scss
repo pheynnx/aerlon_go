@@ -11,7 +11,7 @@
   width: 100%;
   max-width: 24rem;
   justify-self: center;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   background-color: #343434;
   border: 1px solid #2e2c29;
@@ -110,7 +110,7 @@
   line-height: 1;
   color: #fafafa;
   padding: 4px 7px 5px 7px;
-  box-shadow: 0 6px 14px #00000014;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   &:hover {
     // background-color: #56bc7d;
