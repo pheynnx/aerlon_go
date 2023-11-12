@@ -9,7 +9,7 @@ Categories:
   - typescript
   - huh?
 Published: true
-Featured: true
+Featured: false
 PostSnippet: "Coding burnout is real; but coding in a healthy way can be really good for our minds."
 ---
 
