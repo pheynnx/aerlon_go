@@ -10,6 +10,7 @@ import (
 type HTMLStore struct {
 	StaticIndex   string
 	StaticPostMap map[string]string
+	TemplStore    []*model.Post
 }
 
 func InitStore() (*HTMLStore, error) {
@@ -50,5 +51,6 @@ func InitStore() (*HTMLStore, error) {
 	return &HTMLStore{
 		StaticIndex:   blogIndexRendered,
 		StaticPostMap: postsRendered,
+		TemplStore:    postList,
 	}, nil
 }

@@ -4,6 +4,7 @@
   },
   "emmet.includeLanguages": {
     "django": "html",
-    "django-html": "html"
+    "django-html": "html",
+    "templ": "html"
   }
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
 	"github.com/ArminasAer/aerlon/internal/orbit"
 	"github.com/ArminasAer/aerlon/internal/static"
+	"github.com/ArminasAer/aerlon/internal/views"
 )
 
 func main() {
@@ -56,6 +57,11 @@ func main() {
 		// r.Use(middleware.Metrics(db))
 
 		r.Mount("/", blog.Routes(hs))
+	})
+
+	r.Get("/templ/test", func(w http.ResponseWriter, r *http.Request) {
+		c := views.IndexBuilder(hs.TemplStore, true)
+		c.Render(r.Context(), w)
 	})
 
 	// start server

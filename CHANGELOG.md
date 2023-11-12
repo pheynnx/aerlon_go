@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## I wont be updating this changelog until the project hits 0.5
 
+## [0.4.3] - 2023-11-11
+
+### Added
+
+- starting testing on transitioning to templ over pongo
+  - allowing for in language syntax control and much easier to use with HTMx for paritals
+
 ## [0.4.2] - 2023-11-11
 
 ## [0.4.1] - 2023-11-08
