@@ -3,9 +3,9 @@
 // @import "./tooling/_syntax.scss";
 
 html {
-  font-family: "Inter";
+  font-family: "Quicksand";
   -webkit-tap-highlight-color: transparent;
-  background: #1d1d20;
+  background: #28292a;
   // background: #fff;
   color: #fff;
   min-height: 100vh;
@@ -30,6 +30,9 @@ body {
 
 .topper {
   display: grid;
+  z-index: 100;
+  top: 0px;
+  position: sticky;
   // background-color: #181920;
   // border-bottom: 1px solid #09090c;
   // margin-bottom: 25px;

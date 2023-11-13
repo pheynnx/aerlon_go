@@ -13,8 +13,8 @@
   justify-self: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  background-color: #d2b29010;
-  border: 1px solid #353331;
+  background-color: #494646;
+  border: 1px solid #646260;
 
   // &:nth-child(even) {
   //   border: 1px solid #555564;
@@ -23,7 +23,7 @@
   &.featured {
     width: 100%;
     max-width: none;
-    background-color: #2e62650e;
+    background-color: #2b3b3b;
     border: 1px solid #2e6265;
 
     .post_card-category-info {
@@ -50,7 +50,8 @@
     max-width: 28rem;
 
     &:nth-child(even):not(.featured) {
-      background-color: transparent;
+      background-color: #1f1f20;
+      border: 1px solid #72706e;
     }
   }
 }
@@ -67,6 +68,7 @@
 .post_card-title {
   margin: 0;
   color: #fff;
+  font-weight: 500;
   font-size: 20px;
   margin-bottom: 4px;
   &::first-letter {

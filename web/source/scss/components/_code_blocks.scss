@@ -8,14 +8,15 @@
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   background-color: #2e2e2e;
-  border: 1px solid #567fbc;
+  border: 1px solid #2e6265;
 }
 
 .language-name {
   line-height: 1;
   align-self: center;
   margin-left: 10px;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 500;
   &::first-letter {
     text-transform: uppercase;
   }
@@ -25,11 +26,14 @@ pre {
   margin-top: 0;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  border: 1px solid #7e7b79;
+  border-top: none;
   background-color: #242424;
   margin-left: auto;
   margin-right: auto;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  // word-wrap: break-word;
+  // white-space: pre-wrap;
+  overflow: auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
@@ -38,15 +42,15 @@ code {
   font-size: 13px;
   font-weight: 400;
   padding: 3px 5px;
-  background-color: #466aa0;
+  background-color: #2e6265;
   border-radius: 0.25rem;
 }
 
-@media (max-width: 600px) {
-  code {
-    font-size: 10px;
-  }
-}
+// @media (max-width: 600px) {
+//   code {
+//     font-size: 12px;
+//   }
+// }
 
 pre code {
   display: block;
