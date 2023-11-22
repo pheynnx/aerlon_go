@@ -4,16 +4,16 @@
   grid-template-columns: auto;
   justify-items: center;
   text-align: center;
-  padding: 15px 10px 15px 10px;
-  border-radius: 0.5rem;
+  padding: 10px 5px 10px 5px;
+  border-radius: 1rem;
   height: min-content;
   width: 100%;
   max-width: 390px;
   justify-self: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  background-color: #1f1f20;
-  border: 1px solid #807e7d;
+  background-color: #28292a;
+  // border: 1px solid #252525;
 
   // &:nth-child(even) {
   //   border: 1px solid #555564;
@@ -22,12 +22,12 @@
   &.featured {
     width: 100%;
     max-width: none;
-    background-color: #2e626518;
-    border: 1px solid #2e6265;
+    background-color: #2171f218;
+    border: 1px solid #2171f2;
 
     .post_card-category-info {
-      border: 1px solid #2e6265;
-      background-color: #2e626559;
+      border: 1px solid #2171f2;
+      background-color: #2171f259;
 
       &:hover {
         // background-color: #bc7d56;
@@ -69,13 +69,13 @@
   color: #fff;
   font-weight: 500;
   font-size: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   &::first-letter {
     text-transform: uppercase;
   }
 
   &:hover {
-    color: #2e6265;
+    color: #2171f2;
   }
 }
 
@@ -108,7 +108,7 @@
   margin: 0;
   border-radius: 0.25rem;
   background-color: #242320;
-  border: 1px solid #2e6265;
+  border: 1px solid #2171f2;
   font-size: 12px;
   line-height: 1;
   color: #fafafa;
@@ -127,7 +127,7 @@
 .post_card-snippet {
   font-size: 14px;
   margin: 0;
-  color: #c0c0c0;
+  color: #fff;
   padding: 0 2px;
   line-height: 1.7;
 }
