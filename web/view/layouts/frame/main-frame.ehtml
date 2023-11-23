@@ -8,7 +8,7 @@
         <title>aerlon</title>
         <link
         rel="preload"
-        href="/static/fonts/Inter.ttf"
+        href="/static/fonts/OpenSans.ttf"
         as="font"
         type="font/ttf"
         crossorigin
