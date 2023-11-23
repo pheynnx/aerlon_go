@@ -6,7 +6,7 @@ html {
   -webkit-tap-highlight-color: transparent;
   // background: var(--html-b);
   background-color: #1c1d20;
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23525153' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%237284ac' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   color: #fff;
   min-height: 100vh;
 
@@ -26,6 +26,29 @@ body {
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  // background-color: #324372;
+  width: 5px;
+
+  &:horizontal {
+    height: 4px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+// TODO
+::-webkit-scrollbar-thumb {
+  background: #868686;
+  border-radius: 4px;
+
+  &:hover {
+    background: #9b9b9b;
+  }
 }
 
 .topper {

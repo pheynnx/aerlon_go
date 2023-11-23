@@ -1,19 +1,18 @@
 .post_card {
-  padding: 0 10px;
   display: grid;
   grid-template-columns: auto;
   justify-items: center;
   text-align: center;
-  padding: 10px 5px 10px 5px;
-  border-radius: 1rem;
+  padding: 12px 5px;
+  border-radius: 0.75rem;
   height: min-content;
   width: 100%;
   max-width: 390px;
   justify-self: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  background-color: #28292a;
-  // border: 1px solid #252525;
+  background-color: #303446;
+  // border: 1px solid #ca9ee6;
 
   // &:nth-child(even) {
   //   border: 1px solid #555564;
@@ -22,12 +21,12 @@
   &.featured {
     width: 100%;
     max-width: none;
-    background-color: #2171f218;
-    border: 1px solid #2171f2;
+    background-color: #80aaee2c;
+    border: 1px solid #80aaee;
 
     .post_card-category-info {
-      border: 1px solid #2171f2;
-      background-color: #2171f259;
+      border: 1px solid #80aaee;
+      background-color: #80aaee59;
 
       &:hover {
         // background-color: #bc7d56;
@@ -57,7 +56,7 @@
 
 .post_card-header {
   display: grid;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   align-items: center;
   flex-wrap: wrap;
   // justify-items: center;
@@ -69,13 +68,14 @@
   color: #fff;
   font-weight: 500;
   font-size: 20px;
+  line-height: 1;
   margin-bottom: 3px;
   &::first-letter {
     text-transform: uppercase;
   }
 
   &:hover {
-    color: #2171f2;
+    color: #80aaee;
   }
 }
 
@@ -87,9 +87,10 @@
 
 .post_card-date {
   margin: 0;
-  color: #ffffff;
-  font-weight: 300;
+  color: #fff;
+  font-weight: 400;
   font-size: 12px;
+  margin: 1px 0px;
 }
 
 .post_card-categories {
@@ -107,8 +108,8 @@
 .post_card-category-info {
   margin: 0;
   border-radius: 0.25rem;
-  background-color: #242320;
-  border: 1px solid #2171f2;
+  background-color: #ca9ee610;
+  border: 1px solid #ca9ee6;
   font-size: 12px;
   line-height: 1;
   color: #fafafa;
@@ -121,13 +122,13 @@
 }
 
 .post_card-snippet-container {
-  color: #fff;
+  // color: #fff;
 }
 
 .post_card-snippet {
   font-size: 14px;
   margin: 0;
-  color: #fff;
+  color: #d8d8d8;
   padding: 0 2px;
   line-height: 1.7;
 }
