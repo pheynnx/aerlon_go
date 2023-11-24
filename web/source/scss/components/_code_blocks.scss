@@ -38,11 +38,12 @@ pre {
 }
 
 code {
-  font-family: "CascadiaMono";
-  font-size: 13px;
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 400;
   padding: 3px 5px;
-  background-color: #2e6265;
+  background-color: #a6e3a1;
+  color: #000;
   border-radius: 0.25rem;
 }
 
@@ -57,7 +58,7 @@ pre code {
   letter-spacing: 0.07rem;
   padding: 0.75em 0.75em;
   line-height: 1.5;
-  // color: #fff;
+  color: #fff;
   background-color: transparent;
 }
 /* PreWrapper */

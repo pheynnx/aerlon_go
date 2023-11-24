@@ -8,10 +8,9 @@ import (
 	chiMiddleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/joho/godotenv"
 
+	"github.com/ArminasAer/aerlon/internal/cache"
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
 	"github.com/ArminasAer/aerlon/internal/orbit"
-	"github.com/ArminasAer/aerlon/internal/static"
-	"github.com/ArminasAer/aerlon/internal/views"
 )
 
 func main() {
@@ -27,8 +26,10 @@ func main() {
 	// 	log.Fatal(err)
 	// }
 
-	// initialize blog html cache
-	hs, err := static.InitStore()
+	// initialize post cache for templates to pull from
+	// currently only shaving of filesystem io call and markdown parsing times
+	// if data is moved back to the cloud, caching the posts in memory will eliminate waiting for networked io
+	pc, err := cache.InitCache()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -41,7 +42,7 @@ func main() {
 	// r.Use(middleware.Logger)
 	r.Use(chiMiddleware.Recoverer)
 
-	// server static files
+	// serve static files
 	// r.Get("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 	// 	http.ServeFile(w, r, "web/root/favicon.ico")
 	// })
@@ -51,17 +52,12 @@ func main() {
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	// app routers
-
 	r.Group(func(r chi.Router) {
 
+		// I would like to keep backend analytics of site traffic in its own thread
 		// r.Use(middleware.Metrics(db))
 
-		r.Mount("/", blog.Routes(hs))
-	})
-
-	r.Get("/templ/test", func(w http.ResponseWriter, r *http.Request) {
-		c := views.IndexBuilder(hs.TemplStore, true)
-		c.Render(r.Context(), w)
+		r.Mount("/", blog.Routes(pc))
 	})
 
 	// start server

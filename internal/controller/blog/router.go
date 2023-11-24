@@ -3,8 +3,8 @@ package blog
 import (
 	"net/http"
 
+	"github.com/ArminasAer/aerlon/internal/cache"
 	"github.com/ArminasAer/aerlon/internal/orbit"
-	"github.com/ArminasAer/aerlon/internal/static"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -12,19 +12,19 @@ import (
 //
 // extends chi router and orbit
 type Router struct {
-	htmlStore *static.HTMLStore
+	postCache *cache.PostCache
 	*chi.Mux
 	*orbit.Orbit
 }
 
-func newRouter(htmlStore *static.HTMLStore) *Router {
+func newRouter(postCache *cache.PostCache) *Router {
 	return &Router{
-		htmlStore: htmlStore, Mux: chi.NewRouter(),
+		postCache: postCache, Mux: chi.NewRouter(),
 	}
 }
 
-func Routes(htmlStore *static.HTMLStore) *Router {
-	router := newRouter(htmlStore)
+func Routes(postCache *cache.PostCache) *Router {
+	router := newRouter(postCache)
 
 	h := Handler{router}
 

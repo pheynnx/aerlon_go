@@ -1,12 +1,14 @@
 {
   "scripts": {
-    "dev": "run-p -l dev:css dev:esbuild dev:go",
+    "dev": "run-p -l dev:css dev:esbuild dev:templ dev:go",
     "dev:css": "sass --no-source-map --style=compressed --watch web/source/scss:web/static/css",
     "dev:esbuild": "node --watch-path=./web/source/js ./web/source/js/compiler.mjs",
+    "dev:templ": "templ generate",
     "dev:go": "go run ./cmd/aerlon/ .",
     "build": "run-s -l build:*",
     "build:css": "sass --no-source-map --style=compressed web/source/scss:web/static/css",
     "build:esbuild": "node ./web/source/js/compiler.mjs",
+    "build:templ": "templ generate",
     "build:go": "go build -o ./bin/aerlon ./cmd/aerlon/main.go"
   },
   "devDependencies": {
