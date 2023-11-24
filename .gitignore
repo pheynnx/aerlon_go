@@ -8,6 +8,7 @@
 # compiled
 web/static/css/main.css
 web/static/js/*-compiled.js
+internal/views/*_templ.go
 
 
 # node
