@@ -13,16 +13,26 @@
   max-width: 50rem;
   margin-bottom: 40px;
 
-  &.compact .post_card {
-    padding: 10px 5px;
-
-    .post_card-header {
-      padding-bottom: 0;
+  &.compact {
+    .featured-container {
+      margin-bottom: 5px;
     }
 
-    .post_card-snippet,
-    .post_card-category-info {
-      display: none;
+    .non_featured-container {
+      gap: 10px;
+    }
+
+    .post_card {
+      padding: 10px 5px;
+
+      .post_card-header {
+        padding-bottom: 0;
+      }
+
+      .post_card-snippet,
+      .post_card-category-info {
+        display: none;
+      }
     }
   }
 }
@@ -49,10 +59,12 @@
 }
 
 .index-compact-toggle {
+  cursor: pointer;
   width: 38px;
   height: 30px;
-  background-color: #ca9ee62c;
-  border: 1px solid #ca9ee6;
+  background-color: #4f556d1e;
+  border: 1px solid #5bb86e;
+  // border: none;
   border-radius: 0.25rem;
 
   svg {

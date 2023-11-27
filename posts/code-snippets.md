@@ -60,7 +60,7 @@ const parseInt = std.fmt.parseInt;
 
 ```html
 <html>
-  <head> </head>
+  <head></head>
   <body></body>
 </html>
 ```

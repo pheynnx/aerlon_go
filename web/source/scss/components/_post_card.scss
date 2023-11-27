@@ -11,8 +11,8 @@
   justify-self: center;
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-  background-color: #303446;
-  // border: 1px solid #ca9ee6;
+  background-color: #242731;
+  border: 1px solid #ca9ee6;
 
   // &:nth-child(even) {
   //   border: 1px solid #555564;
@@ -21,12 +21,12 @@
   &.featured {
     width: 100%;
     max-width: none;
-    background-color: #80aaee2c;
-    border: 1px solid #80aaee;
+    background-color: #5bb86e2c;
+    border: 1px solid #5bb86e;
 
     .post_card-category-info {
-      border: 1px solid #80aaee;
-      background-color: #80aaee59;
+      border: 1px solid #5bb86e;
+      background-color: #5bb86e59;
 
       &:hover {
         // background-color: #bc7d56;
@@ -75,7 +75,7 @@
   }
 
   &:hover {
-    color: #80aaee;
+    color: #5bb86e;
   }
 }
 
