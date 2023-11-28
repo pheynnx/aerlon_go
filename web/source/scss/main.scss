@@ -4,9 +4,9 @@
 html {
   font-family: "Quicksand";
   -webkit-tap-highlight-color: transparent;
-  // background: linear-gradient(180deg, #232b30, #0f171c);
-  background-color: #1c1d20;
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23525153' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  background: linear-gradient(45deg, #232330, #0f101c);
+  // background-color: #1c1d20;
+  // background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23525153' fill-opacity='0.21' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   color: #fff;
   min-height: 100vh;
 
@@ -26,6 +26,32 @@ body {
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+
+  &:horizontal {
+    height: 4px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+
+  &:vertical {
+    background: #232330;
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9;
+  border-radius: 4px;
+
+  &:hover {
+    background: #9b9b9b;
+  }
 }
 
 .topper {
