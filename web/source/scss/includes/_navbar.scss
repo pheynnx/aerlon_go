@@ -1,13 +1,13 @@
 .navigation {
+  position: sticky;
+  top: 0px;
   display: flex;
   justify-content: center;
   height: 50px;
-  // border-top: 1px solid #bc9356;
   border-bottom: 1px solid #5e8cff;
   margin-bottom: 20px;
   background-color: #13131a;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px;
-  // border: 1px solid #56bc8d;
 }
 
 .navigation-links {
@@ -41,4 +41,18 @@
   //   color: #bc9356;
   //   background-color: #b9b2a650;
   // }
+}
+
+.header-logo {
+  height: 30px;
+}
+
+.upper {
+  fill: #7e8bff;
+  transition: all 0.6s;
+}
+
+.lower {
+  fill: #5e8cff;
+  transition: all 0.6s;
 }
