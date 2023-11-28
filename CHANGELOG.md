@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5.4] - 2023-11-28
 
+### Changed
+
+- preload of font file was adjusted to quicksand.tff
+
 ### Fixed
 
 - sticky navbar was added back; not sure how this code was lost
