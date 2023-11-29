@@ -49,7 +49,7 @@
 
 .blog-post-markdown p,
 .blog-post-markdown li {
-  color: #ffffff;
+  color: var(--font-color);
   line-height: 2;
   letter-spacing: 0.017em;
   -webkit-font-smoothing: antialiased;

@@ -1,6 +1,34 @@
-$color1: #2e6265;
-$color2: #f7cda1;
+$c1: #5e8cff;
+$c2: #ca9ee6;
 
 :root {
-  --html-b: #0e0e0e;
+  --html-gradient: linear-gradient(45deg, #232330, #0f101c);
+
+  --font-color: #fff;
+
+  --post_card-snippet: #d8d8d8;
+
+  --theme-toggle: #242424;
+  --theme-toggle-border: #a6a6a6;
+}
+
+[data-theme="light"] {
+  --html-gradient: linear-gradient(45deg, #e0e0f0, #c8cdff);
+
+  --font-color: #000000;
+
+  .posts-label,
+  .post_card-title,
+  .post_card-date,
+  .post_card-category-info,
+  .post_card-snippet,
+  .blog-post-markdown p,
+  .blog-post-markdown li {
+    font-weight: 500;
+  }
+
+  --theme-toggle: #ffffff3f;
+  --theme-toggle-border: #5e8cff;
+
+  --post_card-snippet: #242424;
 }
