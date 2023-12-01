@@ -1,13 +1,13 @@
 package views
 
-import "github.com/ArminasAer/aerlon/internal/model"
+import "github.com/ArminasAer/aerlon/internal/model/dto"
 import "fmt"
 
-templ IndexBuilder(posts []*model.Post, containsFeatured bool) {
+templ IndexBuilder(posts []*dto.Meta, containsFeatured bool) {
 	@Main(IndexPage(posts, containsFeatured))
 }
 
-templ IndexPage(posts []*model.Post, containsFeatured bool) {
+templ IndexPage(posts []*dto.Meta, containsFeatured bool) {
 	<div class="main-index-container">
 		<div id="posts-container" class="posts-container">
 			<div class="posts-main-header">
@@ -76,7 +76,7 @@ templ IndexPage(posts []*model.Post, containsFeatured bool) {
 	</div>
 }
 
-templ PostCard(post *model.Post) {
+templ PostCard(post *dto.Meta) {
 	<div
  		if post.Featured {
 			class="post_card_featured"

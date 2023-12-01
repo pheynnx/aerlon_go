@@ -46,23 +46,23 @@ templ navbar() {
 			<button
  				class="toggle-button"
  				onClick="(function(e) {
-					const span = document.querySelector('.toggle-check');
+					const span = document.querySelector(&#39;.toggle-check&#39;);
 
-					let themeValue = localStorage.getItem('theme');
+					let themeValue = localStorage.getItem(&#39;theme&#39;);
 
 					switch (themeValue) {
-						case 'dark':
-							localStorage.setItem('theme', 'light')
-							document.documentElement.setAttribute('data-theme', 'light');
+						case &#39;dark&#39;:
+							localStorage.setItem(&#39;theme&#39;, &#39;light&#39;)
+							document.documentElement.setAttribute(&#39;data-theme&#39;, &#39;light&#39;);
 							break;
-						case 'light':
-							localStorage.setItem('theme', 'dark')
-							document.documentElement.setAttribute('data-theme', 'dark');
+						case &#39;light&#39;:
+							localStorage.setItem(&#39;theme&#39;, &#39;dark&#39;)
+							document.documentElement.setAttribute(&#39;data-theme&#39;, &#39;dark&#39;);
 							break;
 						default:
 					}
 
-					span.classList.toggle('checked')
+					span.classList.toggle(&#39;checked&#39;)
 				}())"
 			>
 				<span class="toggle-check">

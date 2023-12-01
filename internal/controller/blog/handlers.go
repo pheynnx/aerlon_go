@@ -15,7 +15,7 @@ type Handler struct {
 func (h *Handler) getBlogIndex() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		c := views.IndexBuilder(h.postCache.TemplStore, true)
+		c := views.IndexBuilder(h.postCache.MetaSlice, true)
 		c.Render(r.Context(), w)
 	}
 }
@@ -24,7 +24,7 @@ func (h *Handler) getBlogBySlug() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		slug := chi.URLParam(r, "slug")
 
-		post, ok := h.postCache.TemplPostMap[slug]
+		post, ok := h.postCache.PostsMap[slug]
 		if !ok {
 			http.Error(w, fmt.Sprintf("%s is not found", slug), 404)
 			return

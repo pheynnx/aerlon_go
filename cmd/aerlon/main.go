@@ -10,6 +10,7 @@ import (
 
 	"github.com/ArminasAer/aerlon/internal/cache"
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
 )
 
@@ -21,15 +22,15 @@ func main() {
 	}
 
 	// initialize sqlx pool
-	// db, err := database.NewDBPool()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	db, err := database.NewDBPool()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// initialize post cache for templates to pull from
 	// currently only shaving of filesystem io call and markdown parsing times
 	// if data is moved back to the cloud, caching the posts in memory will eliminate waiting for networked io
-	pc, err := cache.InitCache()
+	pc, err := cache.InitCache(db)
 	if err != nil {
 		log.Fatal(err)
 	}

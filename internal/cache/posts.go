@@ -1,40 +1,61 @@
 package cache
 
 import (
+	"slices"
+	"sync"
+
+	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/model"
+	"github.com/ArminasAer/aerlon/internal/model/dto"
 )
 
 // naming of the cache field will change
 // also this cache store might be moved under the model package into is respective type
 type PostCache struct {
-	TemplPostMap map[string]*model.Post
-	TemplStore   []*model.Post
+	Mx        sync.Mutex
+	PostsMap  map[string]*model.Post
+	MetaSlice []*dto.Meta
 }
 
-func InitCache() (*PostCache, error) {
-	posts, err := model.NewPostArray()
+func InitCache(DB *database.DBPool) (*PostCache, error) {
+
+	// grab all posts from database
+	posts, err := model.GetPostsFromDB(DB)
 	if err != nil {
 		return nil, err
 	}
 
-	postList := []*model.Post{}
+	// Sort posts by date
+	model.SortPostsByDate(posts)
 
-	templPostMap := map[string]*model.Post{}
+	metaSlice := []*dto.Meta{}
+
+	postsMap := map[string]*model.Post{}
 
 	for _, p := range posts {
 
-		// could be handled in the template, but then it would allow for its url /slug to be pulled
-		// that could be resolved with a handler check and error if slug is not published
-		// this seems currently to be a cleaner way to just keep unpublished posts out of the cache
-		if p.Published {
-			postList = append(postList, p)
+		// convert raw markdown to html
+		err := p.ConvertMarkdownToHTML()
+		if err != nil {
+			return nil, err
 		}
 
-		templPostMap[p.Slug] = p
+		// sort categories by alphabetical order
+		slices.Sort(p.Categories)
+
+		if p.Published {
+			metaSlice = append(metaSlice, dto.MetaFromPost(p))
+		}
+
+		postsMap[p.Slug] = p
 	}
 
 	return &PostCache{
-		TemplStore:   postList,
-		TemplPostMap: templPostMap,
+		MetaSlice: metaSlice,
+		PostsMap:  postsMap,
 	}, nil
 }
+
+// func (p *PostCache) UpdateCache() {
+// 	p.Mx.Lock()
+// }
