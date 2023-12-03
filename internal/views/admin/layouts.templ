@@ -1,0 +1,22 @@
+package admin
+
+templ Main(contents templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<meta name="description" content="Aerlon"/>
+			<title>Aerlon</title>
+			<link rel="preload" href="/static/fonts/Quicksand.ttf" as="font" type="font/ttf" crossorigin/>
+			<link rel="stylesheet" href="/static/css/admin.css"/>
+			<script src="/static/js/htmx.js"></script>
+			// <script src="/static/js/hyperscript.js"></script>
+			// <script src="/static/js/idiomorph-ext.min.js"></script>
+		</head>
+		<body>
+			@contents
+		</body>
+	</html>
+}

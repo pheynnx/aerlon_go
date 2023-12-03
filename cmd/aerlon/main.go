@@ -9,6 +9,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/ArminasAer/aerlon/internal/cache"
+	"github.com/ArminasAer/aerlon/internal/controller/admin"
 	"github.com/ArminasAer/aerlon/internal/controller/blog"
 	"github.com/ArminasAer/aerlon/internal/database"
 	"github.com/ArminasAer/aerlon/internal/orbit"
@@ -59,6 +60,11 @@ func main() {
 		// r.Use(middleware.Metrics(db))
 
 		r.Mount("/", blog.Routes(pc))
+	})
+
+	// admin routes
+	r.Group(func(r chi.Router) {
+		r.Mount("/admin", admin.Routes(db))
 	})
 
 	// start server
