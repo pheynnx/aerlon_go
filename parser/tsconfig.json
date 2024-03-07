@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist",
+    "strict": false,
+    "target": "esnext",
+    "useUnknownInCatchVariables": true
+  }
+}

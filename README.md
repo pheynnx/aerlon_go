@@ -1,6 +1,6 @@
 # Aerlon
 
-## [0.7.0] beta
+## [0.8.0] beta
 
 ### About
 

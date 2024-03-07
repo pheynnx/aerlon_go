@@ -6,6 +6,7 @@
 /tmp/
 
 # compiled
+parser/*-compiled.js
 web/static/css/main.css
 web/static/js/*-compiled.js
 internal/views/*_templ.go

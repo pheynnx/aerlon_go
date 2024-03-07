@@ -2,7 +2,9 @@ package model
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
+	"os/exec"
 	"sort"
 	"time"
 
@@ -67,14 +69,42 @@ var md = goldmark.New(
 	),
 )
 
-func (p *Post) ConvertMarkdownToHTML() error {
-	var buf bytes.Buffer
-	err := md.Convert([]byte(p.Markdown), &buf)
+func nodeParser(value string) (string, error) {
+	cmd := exec.Command("node", "./parser/parser-compiled.js", value)
+
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	err := cmd.Run()
 	if err != nil {
+		fmt.Println(fmt.Sprint(err) + ": " + stderr.String())
+		return "", err
+	}
+
+	outStr, errStr := stdout.String(), stderr.String()
+	if errStr != "" {
+		return "", errors.New(errStr)
+	}
+
+	return outStr, nil
+}
+
+func (p *Post) ConvertMarkdownToHTML() error {
+	// var buf bytes.Buffer
+	// err := md.Convert([]byte(p.Markdown), &buf)
+	// if err != nil {
+	// 	return err
+	// }
+
+	mrk, err := nodeParser(p.Markdown)
+	if err != nil {
+		println("HERE>>>>>")
 		return err
 	}
 
-	p.Markdown = buf.String()
+	// p.Markdown = buf.String()
+	p.Markdown = mrk
 
 	return nil
 }

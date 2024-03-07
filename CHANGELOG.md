@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2024-03-06
+
+### Changed
+
+- markdown is now being parsed by a child nodejs process so I can use shikiji
+  - shikiji is a js only package that I want to run server side to improve static page render times
+  - shikiji is also modified to apply direct light and dark color css elements on parse html, which simplifies css
+  - shikiji also parses code syntax much better and more accurately than any other markdown parser I have used before
+
 ## [0.7.0] - 2023-12-18
 
 ### Changed
